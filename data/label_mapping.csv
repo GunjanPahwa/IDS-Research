@@ -1,0 +1,101 @@
+dataset,original_label,standardized_label,mapping_confidence,reason,notes
+KDD99,normal,BENIGN,High,Represents standard benign traffic,Classified as normal in KDD99
+KDD99,smurf,DoS,High,ICMP echo request flood,Denial of Service attack
+KDD99,neptune,DoS,High,SYN flood attack,Denial of Service attack
+KDD99,back,DoS,High,Apache Denial of Service,Floods network with requests
+KDD99,teardrop,DoS,High,IP fragment reassembly DoS,Exploits vulnerability in IP stack
+KDD99,pod,DoS,High,Ping of Death,Malformed ping packet flood
+KDD99,land,DoS,High,Spoofed SYN packet with source=dest,Causes loop back on victim
+KDD99,satan,Probe/Reconnaissance,High,Network scanning/probing tool,Scans ports and services
+KDD99,ipsweep,Probe/Reconnaissance,High,IP sweep ping scan,Identifies active hosts
+KDD99,portsweep,Probe/Reconnaissance,High,Port scan,Identifies active services on a host
+KDD99,nmap,Probe/Reconnaissance,High,Nmap network port scanner,Active scanner tool
+KDD99,guess_passwd,Brute Force,High,SSH/Telnet password guessing,Brute force credential attempt
+KDD99,buffer_overflow,Exploitation,High,Buffer overflow exploit,Usually leads to privilege escalation
+KDD99,loadmodule,Privilege Escalation,High,Exploit in loadmodule inside SunOS,Acquires root privileges
+KDD99,perl,Privilege Escalation,High,Exploit using Perl script on SunOS,Acquires root privileges
+KDD99,rootkit,Privilege Escalation,High,Rootkit installation,Persistent privilege escalation
+KDD99,ftp_write,Credential/Access Attack,Medium,Unauthorized writing via anonymous FTP,Gain access/write privileges
+KDD99,multihop,Credential/Access Attack,Medium,Multi-hop access attempt,Pivoting/lateral movement attempt
+KDD99,phf,Web Attack,High,Exploit in CGI phf script,Executes arbitrary commands via web
+KDD99,spy,Probe/Reconnaissance,Low,User spying/snooping,Unclear behavior in original evaluation
+KDD99,imap,Credential/Access Attack,High,IMAP vulnerability exploitation,Attempts to gain remote system access
+KDD99,warezclient,Other,Medium,Downloading unauthorized warez,Policy violation / file download
+KDD99,warezmaster,Other,Medium,Uploading unauthorized warez,Policy violation / file upload
+NSL-KDD,normal,BENIGN,High,Normal benign traffic,Matches KDD99 normal
+NSL-KDD,neptune,DoS,High,SYN flood attack,Matches KDD99 DoS
+NSL-KDD,satan,Probe/Reconnaissance,High,Port/host scanning,Matches KDD99 Probe
+NSL-KDD,ipsweep,Probe/Reconnaissance,High,IP scanning,Matches KDD99 Probe
+NSL-KDD,portsweep,Probe/Reconnaissance,High,Port scanning,Matches KDD99 Probe
+NSL-KDD,smurf,DoS,High,ICMP echo request flood,Matches KDD99 DoS
+NSL-KDD,nmap,Probe/Reconnaissance,High,Nmap port scanning,Matches KDD99 Probe
+NSL-KDD,back,DoS,High,Web server request flood,Matches KDD99 DoS
+NSL-KDD,teardrop,DoS,High,Malformed fragment DoS,Matches KDD99 DoS
+NSL-KDD,warezclient,Other,Medium,Unauthorized software transfer,Matches KDD99 Other
+NSL-KDD,pod,DoS,High,Malformed ping flood,Matches KDD99 DoS
+NSL-KDD,guess_passwd,Brute Force,High,Password brute forcing,Matches KDD99 Brute Force
+NSL-KDD,snmpguess,Brute Force,High,SNMP community string guessing,Credential guessing attempt
+NSL-KDD,snmpgetattack,Credential/Access Attack,Medium,SNMP information disclosure,Accessing system configuration
+NSL-KDD,mailbomb,DoS,High,Email system flooding,DoS on mail server
+NSL-KDD,apache2,DoS,High,Apache server connection exhaustion DoS,Denial of Service attack
+NSL-KDD,processtable,DoS,High,Process table exhaustion attack,Exhausts system processes
+NSL-KDD,udpstorm,DoS,High,UDP loop packet flood,Causes Denial of Service
+NSL-KDD,mscan,Probe/Reconnaissance,High,Multiservice port scanner,Scan tool
+NSL-KDD,saint,Probe/Reconnaissance,High,SAINT security scanner,Scans vulnerabilities
+NSL-KDD,sendmail,Exploitation,High,Sendmail buffer overflow,Remote exploitation
+NSL-KDD,named,Exploitation,High,DNS named daemon exploit,Remote exploitation
+NSL-KDD,xterm,Privilege Escalation,High,Xterm buffer overflow,Local privilege escalation
+NSL-KDD,xsnoop,Credential/Access Attack,High,X11 keystroke logging,Steals keystrokes/credentials
+NSL-KDD,ps,Privilege Escalation,High,Local utility buffer overflow,Privilege escalation
+NSL-KDD,sqlattack,Exploitation,High,SQL injection attempt,Attempts database access/exploitation
+UNSW-NB15,Normal,BENIGN,High,Represents benign normal traffic,Flow classified as benign
+UNSW-NB15,Generic,Other,Medium,Generic catch-all matching signatures,Unspecified category
+UNSW-NB15,Exploits,Exploitation,High,Exploiting software vulnerabilities,Active vulnerability exploits
+UNSW-NB15,Fuzzers,Other,Medium,Fuzzing network services,Injecting random data to crash/find bugs
+UNSW-NB15,DoS,DoS,High,Denial of Service attacks,Includes various DoS methods
+UNSW-NB15,Reconnaissance,Probe/Reconnaissance,High,Network reconnaissance/probing,Scans and discovery
+UNSW-NB15,Analysis,Probe/Reconnaissance,High,Network scanning/web scanning,Scans and traffic analysis
+UNSW-NB15,Backdoor,Infiltration,Medium,Unauthorized remote access backdoors,Infiltration and persistence
+UNSW-NB15,Shellcode,Exploitation,High,Injecting shellcode payloads,Payload execution exploits
+UNSW-NB15,Worms,Botnet,Medium,Self-replicating malware propagation,Malicious spread/bot behavior
+CIC-IDS2017,BENIGN,BENIGN,High,Benign normal traffic,Flow classified as benign
+CIC-IDS2017,DDoS,DDoS,High,Distributed Denial of Service,Includes LOIC and server floods
+CIC-IDS2017,PortScan,Probe/Reconnaissance,High,Port scanning flow,Discovery scan
+CIC-IDS2017,Bot,Botnet,High,Botnet command & control activity,Infected client behavior
+CIC-IDS2017,Infiltration,Infiltration,High,Exploiting software to infiltrate host,Privileged network penetration
+CIC-IDS2017,Web Attack - Brute Force,Brute Force,High,Web form password guessing,Credential brute force
+CIC-IDS2017,Web Attack - XSS,Web Attack,High,Cross-site scripting attempt,Web-based attack vector
+CIC-IDS2017,Web Attack - Sql Injection,Web Attack,High,SQL Injection database query exploit,Web-based database exploit
+CIC-IDS2017,FTP-Patator,Brute Force,High,FTP password brute force,Patator brute force tool
+CIC-IDS2017,SSH-Patator,Brute Force,High,SSH password brute force,Patator brute force tool
+CIC-IDS2017,DoS Hulk,DoS,High,Hulk HTTP Denial of Service flood,Web application DoS
+CIC-IDS2017,DoS GoldenEye,DoS,High,GoldenEye HTTP DoS flood,Web application DoS
+CIC-IDS2017,DoS slowloris,DoS,High,Slowloris slow connection DoS,Keep-alive connection exhaustion
+CIC-IDS2017,DoS Slowhttptest,DoS,High,Slow HTTP Test connection DoS,Keep-alive connection exhaustion
+CIC-IDS2017,Heartbleed,Exploitation,High,Heartbleed OpenSSL memory leak exploit,Vulnerability exploitation
+CSE-CIC-IDS2018,Benign,BENIGN,High,Benign normal traffic,Flow classified as benign
+CSE-CIC-IDS2018,DDOS attack-HOIC,DDoS,High,HOIC tool HTTP flood,Distributed Denial of Service
+CSE-CIC-IDS2018,DDOS attack-LOIC-UDP,DDoS,High,LOIC tool UDP flood,Distributed Denial of Service
+CSE-CIC-IDS2018,DDoS attacks-LOIC-HTTP,DDoS,High,LOIC tool HTTP flood,Distributed Denial of Service
+CSE-CIC-IDS2018,DoS attacks-Hulk,DoS,High,Hulk HTTP Denial of Service flood,Denial of Service
+CSE-CIC-IDS2018,DoS attacks-GoldenEye,DoS,High,GoldenEye HTTP DoS flood,Denial of Service
+CSE-CIC-IDS2018,DoS attacks-Slowloris,DoS,High,Slowloris slow connection DoS,Denial of Service
+CSE-CIC-IDS2018,DoS attacks-SlowHTTPTest,DoS,High,Slow HTTP Test connection DoS,Denial of Service
+CSE-CIC-IDS2018,FTP-BruteForce,Brute Force,High,FTP password brute force,Credential brute force
+CSE-CIC-IDS2018,SSH-Bruteforce,Brute Force,High,SSH password brute force,Credential brute force
+CSE-CIC-IDS2018,Brute Force -Web,Web Attack,High,Web login brute force,Web credential attack
+CSE-CIC-IDS2018,Brute Force -XSS,Web Attack,High,Cross-site scripting attempt,Web-based vulnerability
+CSE-CIC-IDS2018,SQL Injection,Web Attack,High,SQL injection databases query exploit,Web-based database exploit
+CSE-CIC-IDS2018,Bot,Botnet,High,Botnet command & control activity,Infected client behavior
+CSE-CIC-IDS2018,Infiltration,Infiltration,High,Exploiting software to infiltrate host,Privileged network penetration
+UWF ZeekData,normal,BENIGN,High,Normal benign traffic in Zeek logs,Benign flow
+UWF ZeekData,Impact,DoS,Medium,MITRE ATT&CK Impact tactic,Includes resource hijacking/denial
+UWF ZeekData,Discovery,Probe/Reconnaissance,High,MITRE ATT&CK Discovery tactic,Scans and sweeps
+UWF ZeekData,Credential Access,Credential/Access Attack,High,MITRE ATT&CK Credential Access,Credential guessing/dumping
+UWF ZeekData,Collection,Other,Low,MITRE ATT&CK Collection tactic,Gathering sensitive data
+UWF ZeekData,Lateral Movement,Other,Medium,MITRE ATT&CK Lateral Movement,Pivoting to other hosts
+UWF ZeekData,Command and Control,Botnet,Medium,MITRE ATT&CK Command & Control,Beaconing and agent C2
+UWF ZeekData,Defense Evasion,Other,Low,MITRE ATT&CK Defense Evasion,Uninstalling agents/cleaning logs
+UWF ZeekData,Privilege Escalation,Privilege Escalation,High,MITRE ATT&CK Privilege Escalation,Gaining administrative access
+UWF ZeekData,Execution,Exploitation,Medium,MITRE ATT&CK Execution tactic,Running malicious payloads
+UWF ZeekData,Initial Access,Infiltration,Medium,MITRE ATT&CK Initial Access,Entry points to network
