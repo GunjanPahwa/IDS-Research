@@ -1,6 +1,0 @@
-{
-  "dataset_name": "UNSW-NB15",
-  "preprocessing_mode": "cross-dataset",
-  "feature_space": "Common-7",
-  "duplicate_policy": "exclude"
-}

@@ -1,6 +1,0 @@
-{
-  "dataset_name": "NSL-KDD",
-  "preprocessing_mode": "within-dataset",
-  "feature_space": "native",
-  "duplicate_policy": "exclude"
-}

@@ -1,6 +1,0 @@
-{
-  "dataset_name": "KDD99",
-  "preprocessing_mode": "within-dataset",
-  "feature_space": "native",
-  "duplicate_policy": "exclude"
-}
