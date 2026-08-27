@@ -27,18 +27,18 @@ for l in df["Label"].unique():
         print(f"Web label repr: {l!r}")
         print(f"  codepoints: {[hex(ord(c)) for c in str(l)]}")
         key = ("CIC-IDS2017", str(l).strip().rstrip("."))
-        print(f"  lookup hit: {key in ls.lookup}, mapped binary: {ls.standardize(l, 'CIC-IDS2017')}")
+        print(f"  lookup hit: {key in ls._processor.lookup}, mapped binary: {ls.standardize(l, 'CIC-IDS2017')}")
 
 proc = os.path.join(ROOT, "data", "processed", "uwf_zeekdata_common5_train.csv")
 dfp = pd.read_csv(proc)
 print("\nProcessed UWF train label counts:", dfp["label"].value_counts().to_dict(), "rows", len(dfp))
 
-from src.preprocessing.pipeline import NIDSPreprocessor
+from src.preprocessing.pipeline import NIDSPreprocessor, Common7IncompatibleError
 kdd = pd.read_csv(os.path.join(ROOT, "KDD99", "kddcup.data"), nrows=50, header=None, encoding="latin-1")
-pre7 = NIDSPreprocessor("KDD99", feature_space="Common-7", label_mapping_csv=os.path.join(ROOT, "data", "label_mapping.csv"))
+pre7 = NIDSPreprocessor("KDD99", feature_space="Common-5", label_mapping_csv=os.path.join(ROOT, "data", "label_mapping.csv"))
 pre7.fit(kdd)
-X, y = pre7.transform(kdd)
-print(f"KDD99 Common-7 X shape={X.shape}")
+X, y_bin, y_mul = pre7.transform(kdd)
+print(f"KDD99 Common-5 X shape={X.shape}")
 df_std = pre7._standardize_columns(kdd)
 print("KDD99 mapped cols:", [c for c in ["src_packets", "dst_packets", "duration", "protocol", "service"] if c in df_std.columns])
 
@@ -47,8 +47,8 @@ uwf = pq.read_table(p).slice(0, 200).to_pandas()
 pre_uwf = NIDSPreprocessor("UWF ZeekData", feature_space="Common-7", label_mapping_csv=os.path.join(ROOT, "data", "label_mapping.csv"))
 try:
     pre_uwf.fit(uwf)
-    Xu, yu = pre_uwf.transform(uwf)
-    print(f"UWF smoke X={Xu.shape}, y unique={set(yu) if yu is not None else None}")
+    Xu, yu_bin, yu_mul = pre_uwf.transform(uwf)
+    print(f"UWF smoke X={Xu.shape}, y_bin unique={set(yu_bin) if yu_bin is not None else None}")
 except Exception as e:
     print(f"UWF smoke FAILED: {e}")
 
@@ -56,4 +56,4 @@ except Exception as e:
 infil = os.path.join(ROOT, "CIC2018", "Infil1-Wednesday-28-02-2018_TrafficForML_CICFlowMeter.parquet")
 lbl = pq.read_table(infil, columns=["Label"]).to_pandas()["Label"].unique()
 for l in lbl:
-    print(f"CIC2018 label {l!r} -> binary {ls.standardize(l, 'CSE-CIC-IDS2018')}, lookup={( 'CSE-CIC-IDS2018', str(l).strip().rstrip('.') ) in ls.lookup}")
+    print(f"CIC2018 label {l!r} -> binary {ls.standardize(l, 'CSE-CIC-IDS2018')}, lookup={( 'CSE-CIC-IDS2018', str(l).strip().rstrip('.') ) in ls._processor.lookup}")

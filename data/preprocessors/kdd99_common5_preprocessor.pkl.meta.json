@@ -1,0 +1,6 @@
+{
+  "dataset_name": "KDD99",
+  "preprocessing_mode": "cross-dataset",
+  "feature_space": "Common-5",
+  "duplicate_policy": "exclude"
+}

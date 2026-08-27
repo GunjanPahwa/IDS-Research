@@ -126,8 +126,8 @@ def main():
     sample = pd.read_csv(os.path.join(ROOT, "NB15", "UNSW_NB15_training-set.csv"), nrows=100, encoding="latin-1")
     pre = NIDSPreprocessor("UNSW-NB15", feature_space="Common-7", label_mapping_csv=os.path.join(ROOT, "data", "label_mapping.csv"))
     pre.fit(sample)
-    X, y = pre.transform(sample)
-    print(f"UNSW-NB15 smoke: X shape={X.shape}, y unique={set(y) if y is not None else None}")
+    X, y_bin, y_mul = pre.transform(sample)
+    print(f"UNSW-NB15 smoke: X shape={X.shape}, y_bin unique={set(y_bin) if y_bin is not None else None}")
     print(f"Feature names count: {len(pre.get_feature_names())}")
 
     # CIC2018 column mapping test
@@ -136,7 +136,7 @@ def main():
     pre18 = NIDSPreprocessor("CSE-CIC-IDS2018", feature_space="Common-7", label_mapping_csv=os.path.join(ROOT, "data", "label_mapping.csv"))
     try:
         pre18.fit(sample18)
-        X18, y18 = pre18.transform(sample18)
+        X18, y18_bin, y18_mul = pre18.transform(sample18)
         print(f"CIC2018 smoke: X shape={X18.shape}, OK")
     except Exception as e:
         print(f"CIC2018 smoke FAILED: {e}")
@@ -146,8 +146,8 @@ def main():
     pre_kdd = NIDSPreprocessor("KDD99", feature_space="Common-5", label_mapping_csv=os.path.join(ROOT, "data", "label_mapping.csv"))
     try:
         pre_kdd.fit(kdd_sample)
-        Xk, yk = pre_kdd.transform(kdd_sample)
-        print(f"KDD99 smoke: X shape={Xk.shape}, y unique={set(yk) if yk is not None else None}")
+        Xk, yk_bin, yk_mul = pre_kdd.transform(kdd_sample)
+        print(f"KDD99 smoke: X shape={Xk.shape}, y_bin unique={set(yk_bin) if yk_bin is not None else None}")
     except Exception as e:
         print(f"KDD99 smoke FAILED: {e}")
 
@@ -159,7 +159,7 @@ def main():
     print(f"CIC2017 web attack raw labels: {[repr(l) for l in lbls]}")
     ls = __import__("src.preprocessing.mappings", fromlist=["LabelStandardizer"]).LabelStandardizer(os.path.join(ROOT, "data", "label_mapping.csv"))
     for l in lbls:
-        print(f"  {repr(l)} -> binary {ls.standardize(l, 'CIC-IDS2017')}, lookup hit={( 'CIC-IDS2017', str(l).strip().rstrip('.') ) in ls.lookup}")
+        print(f"  {repr(l)} -> binary {ls.standardize(l, 'CIC-IDS2017')}, lookup hit={( 'CIC-IDS2017', str(l).strip().rstrip('.') ) in ls._processor.lookup}")
 
 
 if __name__ == "__main__":

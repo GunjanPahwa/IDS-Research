@@ -80,11 +80,18 @@ class NIDSPreprocessor:
 
         self.imputer = SimpleImputer(strategy="median")
         self.scaler = RobustScaler()
-        self.encoder = OneHotEncoder(
-            categories=[PROTOCOL_VOCAB, SERVICE_VOCAB],
-            handle_unknown="ignore",
-            sparse_output=False,
-        )
+        if feature_space == "native":
+            self.encoder = OneHotEncoder(
+                categories="auto",
+                handle_unknown="ignore",
+                sparse_output=False,
+            )
+        else:
+            self.encoder = OneHotEncoder(
+                categories=[PROTOCOL_VOCAB, SERVICE_VOCAB],
+                handle_unknown="ignore",
+                sparse_output=False,
+            )
         self.native_numeric_cols: list[str] = []
         self.native_categorical_cols: list[str] = []
         self.is_fitted = False
