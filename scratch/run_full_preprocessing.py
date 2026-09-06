@@ -21,7 +21,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 
-ROOT = Path(r"C:\Users\HP\OneDrive\Desktop\Minor Project")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.data.registry import get_loader
@@ -763,88 +763,121 @@ def run_dataset_pipeline(
     update_session_handoff(verification_results)
 
 # ─── Main Orchestrator ────────────────────────────────────────────────────────
+def _all_done(key_prefix: str) -> bool:
+    """Return True if all 3 feature-space outputs (or 2 for kdd99/nsl-kdd) already exist and are valid."""
+    for fs in ["native", "common5", "common7"]:
+        key = f"{key_prefix}_{fs}"
+        train_p = PROCESSED_DIR / f"{key}_train.csv"
+        test_p  = PROCESSED_DIR / f"{key}_test.csv"
+        pkl_p   = PREPROCESSORS_DIR / f"{key}_preprocessor.pkl"
+        # common7 may be legitimately absent for kdd99/nsl-kdd — treat missing pkl as ok if files also absent
+        if not train_p.exists() and not test_p.exists():
+            continue  # INCOMPATIBLE or not expected
+        if not (train_p.exists() and test_p.exists() and pkl_p.exists()):
+            return False
+        min_size = 1_000_000 if fs == "native" else 50_000
+        if train_p.stat().st_size < min_size or test_p.stat().st_size < min_size:
+            return False
+    return True
+
+
 def main():
     print("=== Start Full-Scale Preprocessing Execution ===")
     
     # 1. KDD99
-    kdd_raw = ROOT / "KDD99" / "kddcup.data"
-    kdd_train = ROOT / "data" / "kdd99_train_raw.csv"
-    kdd_test  = ROOT / "data" / "kdd99_test_raw.csv"
-    if not kdd_train.exists():
-        split_kdd99(kdd_raw, kdd_train, kdd_test)
-    run_dataset_pipeline(
-        dataset_name="KDD99",
-        train_raw_path=kdd_train,
-        test_raw_path=kdd_test,
-        key_prefix="kdd99",
-        files_used="kddcup.data",
-        split_strategy="Stratified 80/20 random index split",
-        is_headerless=True
-    )
-    kdd_train.unlink(missing_ok=True)
-    kdd_test.unlink(missing_ok=True)
+    if _all_done("kdd99"):
+        print("[SKIP] KDD99 — all outputs already valid.")
+    else:
+        kdd_raw = ROOT / "KDD99" / "kddcup.data"
+        kdd_train = ROOT / "data" / "kdd99_train_raw.csv"
+        kdd_test  = ROOT / "data" / "kdd99_test_raw.csv"
+        if not kdd_train.exists():
+            split_kdd99(kdd_raw, kdd_train, kdd_test)
+        run_dataset_pipeline(
+            dataset_name="KDD99",
+            train_raw_path=kdd_train,
+            test_raw_path=kdd_test,
+            key_prefix="kdd99",
+            files_used="kddcup.data",
+            split_strategy="Stratified 80/20 random index split",
+            is_headerless=True
+        )
+        kdd_train.unlink(missing_ok=True)
+        kdd_test.unlink(missing_ok=True)
     
     # 2. NSL-KDD
-    nsl_train = ROOT / "NSL KDD" / "KDDTrain+.txt"
-    nsl_test  = ROOT / "NSL KDD" / "KDDTest+.txt"
-    run_dataset_pipeline(
-        dataset_name="NSL-KDD",
-        train_raw_path=nsl_train,
-        test_raw_path=nsl_test,
-        key_prefix="nsl-kdd",
-        files_used="KDDTrain+.txt, KDDTest+.txt",
-        split_strategy="Official predefined train/test splits",
-        is_headerless=True
-    )
+    if _all_done("nsl-kdd"):
+        print("[SKIP] NSL-KDD — all outputs already valid.")
+    else:
+        nsl_train = ROOT / "NSL KDD" / "KDDTrain+.txt"
+        nsl_test  = ROOT / "NSL KDD" / "KDDTest+.txt"
+        run_dataset_pipeline(
+            dataset_name="NSL-KDD",
+            train_raw_path=nsl_train,
+            test_raw_path=nsl_test,
+            key_prefix="nsl-kdd",
+            files_used="KDDTrain+.txt, KDDTest+.txt",
+            split_strategy="Official predefined train/test splits",
+            is_headerless=True
+        )
     
     # 3. UNSW-NB15
-    unsw_train = ROOT / "NB15" / "UNSW_NB15_training-set.csv"
-    unsw_test  = ROOT / "NB15" / "UNSW_NB15_testing-set.csv"
-    run_dataset_pipeline(
-        dataset_name="UNSW-NB15",
-        train_raw_path=unsw_train,
-        test_raw_path=unsw_test,
-        key_prefix="unsw-nb15",
-        files_used="UNSW_NB15_training-set.csv, UNSW_NB15_testing-set.csv",
-        split_strategy="Official predefined train/test splits",
-        is_headerless=False
-    )
+    if _all_done("unsw-nb15"):
+        print("[SKIP] UNSW-NB15 — all outputs already valid.")
+    else:
+        unsw_train = ROOT / "NB15" / "UNSW_NB15_training-set.csv"
+        unsw_test  = ROOT / "NB15" / "UNSW_NB15_testing-set.csv"
+        run_dataset_pipeline(
+            dataset_name="UNSW-NB15",
+            train_raw_path=unsw_train,
+            test_raw_path=unsw_test,
+            key_prefix="unsw-nb15",
+            files_used="UNSW_NB15_training-set.csv, UNSW_NB15_testing-set.csv",
+            split_strategy="Official predefined train/test splits",
+            is_headerless=False
+        )
     
     # 4. CIC-IDS2017
-    cic2017_dir = ROOT / "CIC2017" / "MachineLearningCVE"
-    cic2017_train = ROOT / "data" / "cic2017_train_raw.csv"
-    cic2017_test  = ROOT / "data" / "cic2017_test_raw.csv"
-    if not cic2017_train.exists():
-        split_cic_ids2017(cic2017_dir, cic2017_train, cic2017_test)
-    run_dataset_pipeline(
-        dataset_name="CIC-IDS2017",
-        train_raw_path=cic2017_train,
-        test_raw_path=cic2017_test,
-        key_prefix="cic-ids2017",
-        files_used="8 day-wise CSV files",
-        split_strategy="Stratified 80/20 split per day-file combined",
-        is_headerless=False
-    )
-    cic2017_train.unlink(missing_ok=True)
-    cic2017_test.unlink(missing_ok=True)
+    if _all_done("cic-ids2017"):
+        print("[SKIP] CIC-IDS2017 — all outputs already valid.")
+    else:
+        cic2017_dir = ROOT / "CIC2017" / "MachineLearningCVE"
+        cic2017_train = ROOT / "data" / "cic2017_train_raw.csv"
+        cic2017_test  = ROOT / "data" / "cic2017_test_raw.csv"
+        if not cic2017_train.exists():
+            split_cic_ids2017(cic2017_dir, cic2017_train, cic2017_test)
+        run_dataset_pipeline(
+            dataset_name="CIC-IDS2017",
+            train_raw_path=cic2017_train,
+            test_raw_path=cic2017_test,
+            key_prefix="cic-ids2017",
+            files_used="8 day-wise CSV files",
+            split_strategy="Stratified 80/20 split per day-file combined",
+            is_headerless=False
+        )
+        cic2017_train.unlink(missing_ok=True)
+        cic2017_test.unlink(missing_ok=True)
     
     # 5. CSE-CIC-IDS2018
-    cic2018_dir = ROOT / "CIC2018"
-    cic2018_train = ROOT / "data" / "cic2018_train_raw.parquet"
-    cic2018_test  = ROOT / "data" / "cic2018_test_raw.parquet"
-    if not cic2018_train.exists():
-        split_cse_cic_ids2018(cic2018_dir, cic2018_train, cic2018_test)
-    run_dataset_pipeline(
-        dataset_name="CSE-CIC-IDS2018",
-        train_raw_path=cic2018_train,
-        test_raw_path=cic2018_test,
-        key_prefix="cse-cic-ids2018",
-        files_used="10 day-wise Parquet files",
-        split_strategy="Stratified 80/20 split per day-file combined",
-        is_headerless=False
-    )
-    cic2018_train.unlink(missing_ok=True)
-    cic2018_test.unlink(missing_ok=True)
+    if _all_done("cse-cic-ids2018"):
+        print("[SKIP] CSE-CIC-IDS2018 — all outputs already valid.")
+    else:
+        cic2018_dir = ROOT / "CIC2018"
+        cic2018_train = ROOT / "data" / "cic2018_train_raw.parquet"
+        cic2018_test  = ROOT / "data" / "cic2018_test_raw.parquet"
+        if not cic2018_train.exists():
+            split_cse_cic_ids2018(cic2018_dir, cic2018_train, cic2018_test)
+        run_dataset_pipeline(
+            dataset_name="CSE-CIC-IDS2018",
+            train_raw_path=cic2018_train,
+            test_raw_path=cic2018_test,
+            key_prefix="cse-cic-ids2018",
+            files_used="10 day-wise Parquet files",
+            split_strategy="Stratified 80/20 split per day-file combined",
+            is_headerless=False
+        )
+        cic2018_train.unlink(missing_ok=True)
+        cic2018_test.unlink(missing_ok=True)
     
     # 6. UWF ZeekData
     uwf_dir = ROOT / "UWF ZeekData"

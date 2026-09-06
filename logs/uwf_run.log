@@ -1,0 +1,27 @@
+=== Start Full-Scale Preprocessing Execution ===
+[SKIP] KDD99 — all outputs already valid.
+[SKIP] NSL-KDD — all outputs already valid.
+[SKIP] UNSW-NB15 — all outputs already valid.
+[SKIP] CIC-IDS2017 — all outputs already valid.
+[SKIP] CSE-CIC-IDS2018 — all outputs already valid.
+
+========================================
+Processing Dataset: UWF ZeekData
+========================================
+
+  Feature Space: native
+    Subsampling training DataFrame from 1533405 to 200000 rows for fitting...
+    [PASS] feature count=19, train shape=(1518890, 19), test shape=(379723, 19)
+
+  Feature Space: Common-5
+    Subsampling training DataFrame from 1533405 to 200000 rows for fitting...
+    [PASS] feature count=17, train shape=(1518890, 17), test shape=(379723, 17)
+
+  Feature Space: Common-7
+    Subsampling training DataFrame from 1533405 to 200000 rows for fitting...
+    [PASS] feature count=19, train shape=(1518890, 19), test shape=(379723, 19)
+  [JOURNAL] Updated docs/full_preprocessing_verification.md
+  [JOURNAL] Updated PROJECT_PROGRESS.md
+  [JOURNAL] Updated SESSION_HANDOFF.md
+
+=== Preprocessing Pipelines Run Completed Successfully ===

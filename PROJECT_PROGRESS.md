@@ -3,13 +3,13 @@
 This document tracks the active progress of our Network Intrusion Detection System (IDS) and Cross-Dataset Generalization research.
 
 ## Overall Project Status
-- **Phase**: Preprocessing Implementation & Validation (Completed)
-- **Status**: Conda environment configured. All raw datasets inspected. Loaders verified. Preprocessing completed for 10 feature spaces (2 recorded as INCOMPATIBLE, 0 FAILED). Verified shapes, NaN/Inf cleaning, and fit/transform isolation.
+- **Phase**: Preprocessing Complete — Ready for Stage 1 Modeling
+- **Status**: All 6 datasets fully preprocessed across all applicable feature spaces. UWF ZeekData confirmed complete (28-Aug-2026). Zero NaN/Inf in features. All preprocessors saved. Ready for Stage 1 binary classifier.
 
 ## Environment & Setup Information
 - **Conda Environment**: `ids_research`
 - **Python Version**: 3.11.15
-- **Active Interpreter**: `C:\Users\HP\anaconda3\envs\ids_research\python.exe`
+- **Active Interpreter**: `C:\Users\Yukta.Thakran\AppData\Local\miniconda3\envs\ids_research\python.exe`
 - **Core Dependencies**:
   - `pandas`
   - `numpy`
@@ -50,26 +50,15 @@ This document tracks the active progress of our Network Intrusion Detection Syst
 - **UWF ZeekData**: 1 Snappy Parquet file in `UWF ZeekData/` containing 26 columns of Zeek logs.
 
 ## Preprocessing Status
-- **KDD99**:
-  - **native**: COMPLETED (Train shape: [3918744, 59], Test shape: [979687, 59])
-  - **Common-5**: COMPLETED (Train shape: [3918744, 18], Test shape: [979687, 18])
-  - **Common-7**: INCOMPATIBLE (Common-7 is incompatible with KDD99: src_packets/dst_packets are not available. Use Common-5 instead.)
-- **NSL-KDD**:
-  - **native**: COMPLETED (Train shape: [125973, 59], Test shape: [22544, 59])
-  - **Common-5**: COMPLETED (Train shape: [125973, 18], Test shape: [22544, 18])
-  - **Common-7**: INCOMPATIBLE (Common-7 is incompatible with NSL-KDD: src_packets/dst_packets are not available. Use Common-5 instead.)
-- **UNSW-NB15**:
-  - **native**: COMPLETED (Train shape: [175341, 62], Test shape: [82332, 62])
-  - **Common-5**: COMPLETED (Train shape: [175341, 18], Test shape: [82332, 18])
-  - **Common-7**: COMPLETED (Train shape: [175341, 20], Test shape: [82332, 20])
-- **CIC-IDS2017**:
-  - **native**: COMPLETED (Train shape: [2264591, 93], Test shape: [566152, 93])
-  - **Common-5**: COMPLETED (Train shape: [2264591, 18], Test shape: [566152, 18])
-  - **Common-7**: COMPLETED (Train shape: [2264591, 20], Test shape: [566152, 20])
-- **CSE-CIC-IDS2018**:
-  - Status: PENDING
-- **UWF ZeekData**:
-  - Status: PENDING
+- **KDD99**: ✅ COMPLETED — native (3,918,744/979,687), common5 (3,918,744/979,687); common7 INCOMPATIBLE
+- **NSL-KDD**: ✅ COMPLETED — native (125,973/22,544), common5 (125,973/22,544); common7 INCOMPATIBLE
+- **UNSW-NB15**: ✅ COMPLETED — native (175,341/82,332), common5, common7
+- **CIC-IDS2017**: ✅ COMPLETED — native (2,264,591/566,152), common5, common7
+- **CSE-CIC-IDS2018**: ✅ COMPLETED — native (5,327,621/1,331,911), common5, common7
+- **UWF ZeekData**: ✅ COMPLETED (28-Aug-2026)
+  - **native**: Train=1,518,890 / Test=379,723 | features=19 | NaN=0 Inf=0
+  - **common5**: Train=1,518,890 / Test=379,723 | features=17 | NaN=0 Inf=0
+  - **common7**: Train=1,518,890 / Test=379,723 | features=19 | NaN=0 Inf=0
 
 
 ## Experiments/Models Completed
@@ -110,9 +99,9 @@ This document tracks the active progress of our Network Intrusion Detection Syst
 - **Data Leakage Mitigation**: Excluded leakage-prone columns (`difficulty_score`, `id`, IP fields, timestamps, community hashes) during preprocessing.
 
 ## Current Task/State
-- Completed native-mode preprocessing fix, resolved audit script signatures, and successfully ran unittest loaders verification suite.
+- All 6 datasets fully preprocessed. Conda environment `ids_research` set up on new machine (Miniconda at `C:\Users\Yukta.Thakran\AppData\Local\miniconda3`). Ready to begin Stage 1 binary classifier.
 
 ## Next Steps (Prioritized)
-1. **Generate full-scale processed datasets** in `data/processed/` using the verified preprocessor. Ensure train and test splits are kept strictly separate during pipeline fitting to avoid leakage.
-2. **Establish baseline binary and multiclass ML models** (Logistic Regression, Decision Trees, Random Forests) and log within-dataset native performance.
-3. **Run cross-dataset generalization experiments** using the Common-5 and Common-7 mapped feature spaces.
+1. **Stage 1 — Binary Classifier**: Train attack/benign classifiers (Logistic Regression, Random Forest, XGBoost) per dataset in native feature space. Log accuracy, precision, recall, F1, ROC-AUC.
+2. **Stage 2 — Multi-class Classifier**: Train attack-type classifiers on attack-only subset.
+3. **Cross-dataset generalization**: Train on one dataset, evaluate on others using Common-5 and Common-7 feature spaces.

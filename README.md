@@ -35,6 +35,8 @@ pip install -r requirements.txt
 ```
 
 ## Documentation
+For the complete current-state project report, see [Project Report](PROJECT_REPORT.md).
+
 Refer to the `docs/` directory for detailed analysis:
 - [Dataset Inventory](docs/dataset_inventory.md)
 - [Dataset Comparison](docs/dataset_comparison.md)

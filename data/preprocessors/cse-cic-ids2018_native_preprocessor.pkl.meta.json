@@ -1,0 +1,6 @@
+{
+  "dataset_name": "CSE-CIC-IDS2018",
+  "preprocessing_mode": "within-dataset",
+  "feature_space": "native",
+  "duplicate_policy": "exclude"
+}

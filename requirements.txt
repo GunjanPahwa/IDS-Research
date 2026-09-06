@@ -3,6 +3,8 @@ numpy
 pyarrow
 polars
 scikit-learn
+joblib
+scipy
 matplotlib
 seaborn
 jupyter

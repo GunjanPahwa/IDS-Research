@@ -4,14 +4,12 @@
 To study dataset evolution and cross-dataset generalization in Machine Learning-based Network Intrusion Detection Systems (NIDS).
 
 ## 2. Current Status
-All initial pipeline, loader, and testing setup are completed, resolved, and verified.
-- Preprocessing works perfectly for all 6 datasets. Generated 10 processed splits, with KDD99/NSL-KDD Common-7 marked as INCOMPATIBLE.
-- The OneHotEncoder shape mismatch bug has been fixed and successfully verified on KDD99, NSL-KDD, UNSW-NB15, CIC-IDS2017, CSE-CIC-IDS2018, and UWF ZeekData.
-- Scratch scripts (`scratch/audit_datasets.py` and `scratch/audit_extra.py`) have been updated and run successfully to completion (exit code 0).
-- Loader unit tests have been migrated to `unittest` and pass successfully on all datasets.
-- Existing `data/processed/` files are toy datasets (4,000 train / 1,000 test rows).
-- The preprocessing layer is now fully verified and ready for full-scale processing of the raw datasets.
-- No model training has been started. Raw datasets remain unmodified.
+All preprocessing is 100% complete across all 6 datasets and all applicable feature spaces. Ready for Stage 1 binary classifier.
+- Preprocessing works perfectly for all 6 datasets. Generated 16 processed splits (13 PASS + 3 INCOMPATIBLE for KDD99/NSL-KDD Common-7).
+- UWF ZeekData preprocessing completed 28-Aug-2026: native/common5/common7 all PASS (1,518,890 train / 379,723 test rows each). NaN=0 Inf=0.
+- All 6 datasets have full-scale processed CSVs in `data/processed/` and fitted preprocessors in `data/preprocessors/`.
+- Conda environment `ids_research` set up on new machine (Miniconda at `C:\Users\Yukta.Thakran\AppData\Local\miniconda3`).
+- No model training has been started.
 
 ## 3. Datasets Available
 All datasets are located directly in the workspace root:
@@ -83,25 +81,26 @@ No experiments/modeling completed yet.
 - **No Early Modeling**: Deliberately postponed modeling until preprocessing pipeline bugs are verified and fixed.
 
 ## 11. Current Task
-- Fixed and verified scratch audit scripts, migrated loader unit tests to `unittest` and verified they all pass.
+- All preprocessing complete. Environment set up on new machine. Ready to start Stage 1 binary classifier.
 
 ## 12. Next Steps (Prioritized list)
-1. **Generate full-scale processed datasets** in `data/processed/` using the verified preprocessor. Ensure train and test splits are kept strictly separate during pipeline fitting to avoid leakage.
-2. **Establish baseline machine learning models** (Logistic Regression, Decision Trees, Random Forests) and log within-dataset native performance.
-3. **Run cross-dataset generalization experiments** using the Common-5 and Common-7 mapped feature spaces.
+1. **Stage 1 — Binary Classifier**: Train attack/benign classifiers per dataset in native feature space. Models: Logistic Regression, Random Forest, XGBoost. Metrics: accuracy, precision, recall, F1, ROC-AUC.
+2. **Stage 2 — Multi-class Attack-type Classifier**: Train on attack-only subset of each dataset.
+3. **Cross-dataset Generalization**: Train on one dataset, evaluate on others using Common-5 and Common-7 feature spaces.
 
 ## 13. Commands Executed
 - Activate environment: `conda activate ids_research`
-- Inspect active Python: `conda run -n ids_research python -c "import sys; print(sys.executable)"`
-- Run custom verification: `conda run -n ids_research python scratch/verify_processed.py`
-- Run audit datasets: `conda run -n ids_research python scratch/audit_datasets.py`
-- Run audit extra: `conda run -n ids_research python scratch/audit_extra.py`
-- Run unit test suite: `conda run -n ids_research python -m unittest tests/test_loaders.py`
+- Run preprocessing: `conda run -n ids_research python scratch/run_full_preprocessing.py`
+- Verify packages: `conda run -n ids_research python -c "import pandas, numpy, sklearn, scipy; print('OK')"`
+- Conda path (new machine): `$env:PATH = "$env:USERPROFILE\AppData\Local\miniconda3\Scripts;$env:USERPROFILE\AppData\Local\miniconda3;$env:PATH"`
 
 ## 14. Things NOT to Redo
 - Do not recreate `ids_research` Conda environment.
+- Do not rerun `scratch/run_full_preprocessing.py` — all 6 datasets are fully processed. The `_all_done()` guard will skip completed datasets, but there's no need to run it again.
 - Do not rerun full dataset analysis scripts in `scratch/` (results are already saved to `docs/`).
 
 ## 15. Warnings / Important Context
 - Always filter out identified leakage columns (`difficulty_score`, `id`, IP fields) before training any ML model.
-- Processed files currently in `data/processed/` are toy datasets and must be regenerated at full scale before model training.
+- Processed files in `data/processed/` are FULL SCALE (not toy). Do not regenerate.
+- Corporate SSL inspection on network: use `--trusted-host pypi.org --trusted-host files.pythonhosted.org` for pip, `conda config --set ssl_verify false` for conda (re-enable after installs).
+- KDD99 and NSL-KDD are INCOMPATIBLE with Common-7 (lack packet-count fields). This is expected.

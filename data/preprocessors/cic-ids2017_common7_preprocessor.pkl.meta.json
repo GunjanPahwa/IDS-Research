@@ -1,0 +1,6 @@
+{
+  "dataset_name": "CIC-IDS2017",
+  "preprocessing_mode": "cross-dataset",
+  "feature_space": "Common-7",
+  "duplicate_policy": "exclude"
+}

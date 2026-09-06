@@ -1,0 +1,478 @@
+{
+  "meta": {
+    "feature_space": "common7",
+    "datasets": [
+      "cic-ids2017",
+      "cse-cic-ids2018",
+      "unsw-nb15",
+      "uwf_zeekdata"
+    ],
+    "model": "XGBClassifier",
+    "xgb_params": {
+      "n_estimators": 300,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "tree_method": "hist",
+      "n_jobs": -1,
+      "random_state": 42,
+      "eval_metric": "logloss",
+      "verbosity": 0
+    },
+    "date": "2026-09-01"
+  },
+  "class_balance": {
+    "cic-ids2017": {
+      "train": {
+        "n": 2264591,
+        "n_benign": 1818474,
+        "n_attack": 446117,
+        "attack_ratio": 0.197,
+        "flag": ""
+      },
+      "test": {
+        "n": 566152,
+        "n_benign": 454623,
+        "n_attack": 111529,
+        "attack_ratio": 0.197,
+        "flag": ""
+      }
+    },
+    "cse-cic-ids2018": {
+      "train": {
+        "n": 5327621,
+        "n_benign": 4263202,
+        "n_attack": 1064419,
+        "attack_ratio": 0.1998,
+        "flag": ""
+      },
+      "test": {
+        "n": 1331911,
+        "n_benign": 1065806,
+        "n_attack": 266105,
+        "attack_ratio": 0.1998,
+        "flag": ""
+      }
+    },
+    "unsw-nb15": {
+      "train": {
+        "n": 175341,
+        "n_benign": 56000,
+        "n_attack": 119341,
+        "attack_ratio": 0.6806,
+        "flag": ""
+      },
+      "test": {
+        "n": 82332,
+        "n_benign": 37000,
+        "n_attack": 45332,
+        "attack_ratio": 0.5506,
+        "flag": ""
+      }
+    },
+    "uwf_zeekdata": {
+      "train": {
+        "n": 1518890,
+        "n_benign": 766487,
+        "n_attack": 752403,
+        "attack_ratio": 0.4954,
+        "flag": ""
+      },
+      "test": {
+        "n": 379723,
+        "n_benign": 191622,
+        "n_attack": 188101,
+        "attack_ratio": 0.4954,
+        "flag": ""
+      }
+    }
+  },
+  "per_dataset_models": {
+    "cic-ids2017": {
+      "cic-ids2017": {
+        "accuracy": 0.992322,
+        "precision": 0.969512,
+        "recall": 0.992226,
+        "f1": 0.980737,
+        "confusion_matrix": [
+          [
+            451143,
+            3480
+          ],
+          [
+            867,
+            110662
+          ]
+        ],
+        "roc_auc": 0.999535,
+        "flag": ""
+      },
+      "cse-cic-ids2018": {
+        "accuracy": 0.799306,
+        "precision": 0.304715,
+        "recall": 0.003521,
+        "f1": 0.006962,
+        "confusion_matrix": [
+          [
+            1063668,
+            2138
+          ],
+          [
+            265168,
+            937
+          ]
+        ],
+        "roc_auc": 0.353438,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "unsw-nb15": {
+        "accuracy": 0.448113,
+        "precision": 0.450281,
+        "recall": 0.010589,
+        "f1": 0.020691,
+        "confusion_matrix": [
+          [
+            36414,
+            586
+          ],
+          [
+            44852,
+            480
+          ]
+        ],
+        "roc_auc": 0.310986,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "uwf_zeekdata": {
+        "accuracy": 0.504636,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "confusion_matrix": [
+          [
+            191622,
+            0
+          ],
+          [
+            188101,
+            0
+          ]
+        ],
+        "roc_auc": 0.92752,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      }
+    },
+    "cse-cic-ids2018": {
+      "cic-ids2017": {
+        "accuracy": 0.676218,
+        "precision": 0.292714,
+        "recall": 0.454429,
+        "f1": 0.35607,
+        "confusion_matrix": [
+          [
+            332160,
+            122463
+          ],
+          [
+            60847,
+            50682
+          ]
+        ],
+        "roc_auc": 0.550883,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "cse-cic-ids2018": {
+        "accuracy": 0.969204,
+        "precision": 0.930982,
+        "recall": 0.913587,
+        "f1": 0.922202,
+        "confusion_matrix": [
+          [
+            1047783,
+            18023
+          ],
+          [
+            22995,
+            243110
+          ]
+        ],
+        "roc_auc": 0.982137,
+        "flag": ""
+      },
+      "unsw-nb15": {
+        "accuracy": 0.451258,
+        "precision": 0.534413,
+        "recall": 0.026207,
+        "f1": 0.049963,
+        "confusion_matrix": [
+          [
+            35965,
+            1035
+          ],
+          [
+            44144,
+            1188
+          ]
+        ],
+        "roc_auc": 0.415893,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "uwf_zeekdata": {
+        "accuracy": 0.504678,
+        "precision": 0.785714,
+        "recall": 0.000117,
+        "f1": 0.000234,
+        "confusion_matrix": [
+          [
+            191616,
+            6
+          ],
+          [
+            188079,
+            22
+          ]
+        ],
+        "roc_auc": 0.521228,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      }
+    },
+    "unsw-nb15": {
+      "cic-ids2017": {
+        "accuracy": 0.682682,
+        "precision": 0.275751,
+        "recall": 0.375535,
+        "f1": 0.317999,
+        "confusion_matrix": [
+          [
+            344619,
+            110004
+          ],
+          [
+            69646,
+            41883
+          ]
+        ],
+        "roc_auc": 0.531443,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "cse-cic-ids2018": {
+        "accuracy": 0.509835,
+        "precision": 0.04437,
+        "recall": 0.070765,
+        "f1": 0.054542,
+        "confusion_matrix": [
+          [
+            660224,
+            405582
+          ],
+          [
+            247274,
+            18831
+          ]
+        ],
+        "roc_auc": 0.301465,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "unsw-nb15": {
+        "accuracy": 0.908407,
+        "precision": 0.903035,
+        "recall": 0.933932,
+        "f1": 0.918224,
+        "confusion_matrix": [
+          [
+            32454,
+            4546
+          ],
+          [
+            2995,
+            42337
+          ]
+        ],
+        "roc_auc": 0.979564,
+        "flag": ""
+      },
+      "uwf_zeekdata": {
+        "accuracy": 0.630949,
+        "precision": 0.690915,
+        "recall": 0.461401,
+        "f1": 0.553301,
+        "confusion_matrix": [
+          [
+            152796,
+            38826
+          ],
+          [
+            101311,
+            86790
+          ]
+        ],
+        "roc_auc": 0.493042,
+        "flag": ""
+      }
+    },
+    "uwf_zeekdata": {
+      "cic-ids2017": {
+        "accuracy": 0.564272,
+        "precision": 0.310146,
+        "recall": 0.989859,
+        "f1": 0.472307,
+        "confusion_matrix": [
+          [
+            209066,
+            245557
+          ],
+          [
+            1131,
+            110398
+          ]
+        ],
+        "roc_auc": 0.711073,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "cse-cic-ids2018": {
+        "accuracy": 0.447981,
+        "precision": 0.212274,
+        "recall": 0.650326,
+        "f1": 0.320072,
+        "confusion_matrix": [
+          [
+            423616,
+            642190
+          ],
+          [
+            93050,
+            173055
+          ]
+        ],
+        "roc_auc": 0.451667,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "unsw-nb15": {
+        "accuracy": 0.296361,
+        "precision": 0.353794,
+        "recall": 0.336297,
+        "f1": 0.344824,
+        "confusion_matrix": [
+          [
+            9155,
+            27845
+          ],
+          [
+            30087,
+            15245
+          ]
+        ],
+        "roc_auc": 0.251993,
+        "flag": "SUSPICIOUSLY_LOW (F1<0.55 cross-dataset \u2014 near random)"
+      },
+      "uwf_zeekdata": {
+        "accuracy": 0.99876,
+        "precision": 0.997508,
+        "recall": 0.999995,
+        "f1": 0.99875,
+        "confusion_matrix": [
+          [
+            191152,
+            470
+          ],
+          [
+            1,
+            188100
+          ]
+        ],
+        "roc_auc": 0.99996,
+        "flag": ""
+      }
+    }
+  },
+  "pooled_model": {
+    "cic-ids2017": {
+      "accuracy": 0.989413,
+      "precision": 0.957008,
+      "recall": 0.990765,
+      "f1": 0.973594,
+      "confusion_matrix": [
+        [
+          449659,
+          4964
+        ],
+        [
+          1030,
+          110499
+        ]
+      ],
+      "roc_auc": 0.999222,
+      "flag": "SUSPICIOUSLY_HIGH (>97% cross-dataset \u2014 check feature scaling)"
+    },
+    "cse-cic-ids2018": {
+      "accuracy": 0.972747,
+      "precision": 0.954727,
+      "recall": 0.906586,
+      "f1": 0.930034,
+      "confusion_matrix": [
+        [
+          1054366,
+          11440
+        ],
+        [
+          24858,
+          241247
+        ]
+      ],
+      "roc_auc": 0.979245,
+      "flag": "SUSPICIOUSLY_HIGH (>97% cross-dataset \u2014 check feature scaling)"
+    },
+    "unsw-nb15": {
+      "accuracy": 0.796968,
+      "precision": 0.739785,
+      "recall": 0.973771,
+      "f1": 0.840803,
+      "confusion_matrix": [
+        [
+          21473,
+          15527
+        ],
+        [
+          1189,
+          44143
+        ]
+      ],
+      "roc_auc": 0.944785,
+      "flag": ""
+    },
+    "uwf_zeekdata": {
+      "accuracy": 0.998696,
+      "precision": 0.997507,
+      "recall": 0.999867,
+      "f1": 0.998686,
+      "confusion_matrix": [
+        [
+          191152,
+          470
+        ],
+        [
+          25,
+          188076
+        ]
+      ],
+      "roc_auc": 0.999912,
+      "flag": "SUSPICIOUSLY_HIGH (>97% cross-dataset \u2014 check feature scaling)"
+    },
+    "combined": {
+      "accuracy": 0.974788,
+      "precision": 0.947432,
+      "recall": 0.955648,
+      "f1": 0.951522,
+      "confusion_matrix": [
+        [
+          1716650,
+          32401
+        ],
+        [
+          27102,
+          583965
+        ]
+      ],
+      "roc_auc": 0.992818
+    }
+  }
+}
