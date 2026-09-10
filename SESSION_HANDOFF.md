@@ -4,12 +4,26 @@
 To study dataset evolution and cross-dataset generalization in Machine Learning-based Network Intrusion Detection Systems (NIDS).
 
 ## 2. Current Status
+
 All preprocessing is 100% complete across all 6 datasets and all applicable feature spaces. Ready for Stage 1 binary classifier.
-- Preprocessing works perfectly for all 6 datasets. Generated 16 processed splits (13 PASS + 3 INCOMPATIBLE for KDD99/NSL-KDD Common-7).
-- UWF ZeekData preprocessing completed 28-Aug-2026: native/common5/common7 all PASS (1,518,890 train / 379,723 test rows each). NaN=0 Inf=0.
+
+- Preprocessing works successfully for all 6 datasets. Generated 16 processed splits, with KDD99/NSL-KDD Common-7 marked as INCOMPATIBLE.
+
+- UWF ZeekData preprocessing completed 28-Aug-2026: native/Common-5/Common-7 all PASS (1,518,890 train / 379,723 test rows each). NaN=0, Inf=0.
+
 - All 6 datasets have full-scale processed CSVs in `data/processed/` and fitted preprocessors in `data/preprocessors/`.
-- Conda environment `ids_research` set up on new machine (Miniconda at `C:\Users\Yukta.Thakran\AppData\Local\miniconda3`).
-- No model training has been started.
+
+- The OneHotEncoder shape mismatch bug has been fixed and successfully verified across all 6 datasets.
+
+- Scratch scripts (`scratch/audit_datasets.py` and `scratch/audit_extra.py`) have been updated and run successfully to completion (exit code 0).
+
+- Loader unit tests have been migrated to `unittest` and pass successfully on all datasets.
+
+- The preprocessing layer has been fully verified, including dataset loading, preprocessing, NaN/Inf cleaning, and fit/transform isolation.
+
+- Conda environment `ids_research` is set up on the current machine.
+
+- No model training has been started. Raw datasets remain unmodified.
 
 ## 3. Datasets Available
 All datasets are located directly in the workspace root:
@@ -84,9 +98,14 @@ No experiments/modeling completed yet.
 - All preprocessing complete. Environment set up on new machine. Ready to start Stage 1 binary classifier.
 
 ## 12. Next Steps (Prioritized list)
-1. **Stage 1 — Binary Classifier**: Train attack/benign classifiers per dataset in native feature space. Models: Logistic Regression, Random Forest, XGBoost. Metrics: accuracy, precision, recall, F1, ROC-AUC.
-2. **Stage 2 — Multi-class Attack-type Classifier**: Train on attack-only subset of each dataset.
-3. **Cross-dataset Generalization**: Train on one dataset, evaluate on others using Common-5 and Common-7 feature spaces.
+
+1. **Stage 1 — Binary Classifier**: Establish baseline attack/benign classifiers per dataset in native feature space. Models: Logistic Regression, Decision Tree, Random Forest, XGBoost. Metrics: accuracy, precision, recall, F1, ROC-AUC. Log within-dataset baseline performance.
+
+2. **Stage 2 — Multi-class Attack-type Classifier**: Train classifiers on the attack-only subset of each dataset to predict attack categories.
+
+3. **Cross-dataset Generalization**: Train on one dataset and evaluate on other datasets using the Common-5 and Common-7 mapped feature spaces.
+
+4. **Results & Analysis**: Compare within-dataset and cross-dataset performance, identify generalization gaps, and analyze which feature spaces and models perform best.
 
 ## 13. Commands Executed
 - Activate environment: `conda activate ids_research`

@@ -3,8 +3,12 @@
 This document tracks the active progress of our Network Intrusion Detection System (IDS) and Cross-Dataset Generalization research.
 
 ## Overall Project Status
+
 - **Phase**: Preprocessing Complete — Ready for Stage 1 Modeling
+
 - **Status**: All 6 datasets fully preprocessed across all applicable feature spaces. UWF ZeekData confirmed complete (28-Aug-2026). Zero NaN/Inf in features. All preprocessors saved. Ready for Stage 1 binary classifier.
+
+- **Preprocessing Coverage**: 16 feature spaces completed successfully, with 2 recorded as INCOMPATIBLE and 0 FAILED. Dataset loaders, NaN/Inf cleaning, and fit/transform isolation have been verified.
 
 ## Environment & Setup Information
 - **Conda Environment**: `ids_research`
@@ -50,16 +54,36 @@ This document tracks the active progress of our Network Intrusion Detection Syst
 - **UWF ZeekData**: 1 Snappy Parquet file in `UWF ZeekData/` containing 26 columns of Zeek logs.
 
 ## Preprocessing Status
-- **KDD99**: ✅ COMPLETED — native (3,918,744/979,687), common5 (3,918,744/979,687); common7 INCOMPATIBLE
-- **NSL-KDD**: ✅ COMPLETED — native (125,973/22,544), common5 (125,973/22,544); common7 INCOMPATIBLE
-- **UNSW-NB15**: ✅ COMPLETED — native (175,341/82,332), common5, common7
-- **CIC-IDS2017**: ✅ COMPLETED — native (2,264,591/566,152), common5, common7
-- **CSE-CIC-IDS2018**: ✅ COMPLETED — native (5,327,621/1,331,911), common5, common7
-- **UWF ZeekData**: ✅ COMPLETED (28-Aug-2026)
-  - **native**: Train=1,518,890 / Test=379,723 | features=19 | NaN=0 Inf=0
-  - **common5**: Train=1,518,890 / Test=379,723 | features=17 | NaN=0 Inf=0
-  - **common7**: Train=1,518,890 / Test=379,723 | features=19 | NaN=0 Inf=0
 
+- **KDD99**:
+  - **native**: COMPLETED (Train shape: [3918744, 59], Test shape: [979687, 59])
+  - **Common-5**: COMPLETED (Train shape: [3918744, 18], Test shape: [979687, 18])
+  - **Common-7**: INCOMPATIBLE (Common-7 is incompatible with KDD99: src_packets/dst_packets are not available. Use Common-5 instead.)
+
+- **NSL-KDD**:
+  - **native**: COMPLETED (Train shape: [125973, 59], Test shape: [22544, 59])
+  - **Common-5**: COMPLETED (Train shape: [125973, 18], Test shape: [22544, 18])
+  - **Common-7**: INCOMPATIBLE (Common-7 is incompatible with NSL-KDD: src_packets/dst_packets are not available. Use Common-5 instead.)
+
+- **UNSW-NB15**:
+  - **native**: COMPLETED (Train shape: [175341, 62], Test shape: [82332, 62])
+  - **Common-5**: COMPLETED (Train shape: [175341, 18], Test shape: [82332, 18])
+  - **Common-7**: COMPLETED (Train shape: [175341, 20], Test shape: [82332, 20])
+
+- **CIC-IDS2017**:
+  - **native**: COMPLETED (Train shape: [2264591, 93], Test shape: [566152, 93])
+  - **Common-5**: COMPLETED (Train shape: [2264591, 18], Test shape: [566152, 18])
+  - **Common-7**: COMPLETED (Train shape: [2264591, 20], Test shape: [566152, 20])
+
+- **CSE-CIC-IDS2018**:
+  - **native**: COMPLETED (Train shape: [5327621, 79], Test shape: [1331911, 79])
+  - **Common-5**: COMPLETED (Train shape: [5327621, 17], Test shape: [1331911, 17])
+  - **Common-7**: COMPLETED (Train shape: [5327621, 19], Test shape: [1331911, 19])
+
+- **UWF ZeekData**:
+  - **native**: COMPLETED (Train shape: [1518890, 19], Test shape: [379723, 19])
+  - **Common-5**: COMPLETED (Train shape: [1518890, 17], Test shape: [379723, 17])
+  - **Common-7**: COMPLETED (Train shape: [1518890, 19], Test shape: [379723, 19])
 
 ## Experiments/Models Completed
 *None.*
