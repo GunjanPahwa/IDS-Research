@@ -2924,5 +2924,975 @@
         }
       }
     }
+  },
+  "stage2_multiclass_and_unified_common7": {
+    "cic-ids2017": {
+      "two_stage_cascaded": {
+        "accuracy": 0.927733,
+        "macro_precision": 0.891458,
+        "macro_recall": 0.699553,
+        "macro_f1": 0.716629,
+        "weighted_precision": 0.919745,
+        "weighted_recall": 0.927733,
+        "weighted_f1": 0.901297,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            448447,
+            158,
+            22,
+            118,
+            5806,
+            0,
+            0,
+            7,
+            62
+          ],
+          [
+            149,
+            244,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            588,
+            0,
+            2179,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            41,
+            0,
+            0,
+            25565,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1996,
+            0,
+            0,
+            2,
+            48534,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            400,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            34,
+            0
+          ],
+          [
+            31550,
+            0,
+            0,
+            0,
+            12,
+            0,
+            0,
+            0,
+            224
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.993549,
+        "macro_precision": 0.980278,
+        "macro_recall": 0.811145,
+        "macro_f1": 0.844001,
+        "weighted_precision": 0.99351,
+        "weighted_recall": 0.993549,
+        "weighted_f1": 0.993182,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            452676,
+            1,
+            44,
+            30,
+            1662,
+            0,
+            0,
+            3,
+            204
+          ],
+          [
+            243,
+            150,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            12,
+            0,
+            2755,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            0,
+            0,
+            25580,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            991,
+            0,
+            0,
+            2,
+            49540,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            395,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            40,
+            0
+          ],
+          [
+            24,
+            0,
+            0,
+            0,
+            12,
+            0,
+            0,
+            2,
+            31748
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.99965,
+        "macro_precision": 0.997891,
+        "macro_recall": 0.997544,
+        "macro_f1": 0.997717,
+        "weighted_precision": 0.99965,
+        "weighted_recall": 0.99965,
+        "weighted_f1": 0.99965,
+        "labels": [
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            393,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2766,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            25600,
+            6,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            5,
+            50525,
+            0,
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            427,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            12,
+            0,
+            0,
+            4,
+            31770
+          ]
+        ]
+      },
+      "elapsed_sec": 336.7
+    },
+    "cse-cic-ids2018": {
+      "two_stage_cascaded": {
+        "accuracy": 0.86146,
+        "macro_precision": 0.804844,
+        "macro_recall": 0.717408,
+        "macro_f1": 0.72167,
+        "weighted_precision": 0.927617,
+        "weighted_recall": 0.86146,
+        "weighted_f1": 0.89015,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Infiltration",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            918523,
+            16,
+            529,
+            36440,
+            1490,
+            108802,
+            2
+          ],
+          [
+            306,
+            28601,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            21,
+            0,
+            18799,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            6881,
+            0,
+            0,
+            146617,
+            1585,
+            108,
+            0
+          ],
+          [
+            7336,
+            0,
+            0,
+            2307,
+            29662,
+            9,
+            0
+          ],
+          [
+            18244,
+            1,
+            15,
+            258,
+            41,
+            5138,
+            0
+          ],
+          [
+            129,
+            0,
+            1,
+            0,
+            1,
+            0,
+            45
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.968203,
+        "macro_precision": 0.899793,
+        "macro_recall": 0.751539,
+        "macro_f1": 0.776975,
+        "weighted_precision": 0.960488,
+        "weighted_recall": 0.968203,
+        "weighted_f1": 0.959714,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Infiltration",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            1061440,
+            10,
+            0,
+            2591,
+            1564,
+            196,
+            1
+          ],
+          [
+            285,
+            28613,
+            0,
+            3,
+            6,
+            0,
+            0
+          ],
+          [
+            53,
+            0,
+            18766,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            3394,
+            0,
+            0,
+            147635,
+            4162,
+            0,
+            0
+          ],
+          [
+            1649,
+            0,
+            0,
+            4873,
+            32792,
+            0,
+            0
+          ],
+          [
+            23321,
+            1,
+            0,
+            106,
+            43,
+            226,
+            0
+          ],
+          [
+            90,
+            0,
+            0,
+            0,
+            1,
+            0,
+            85
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.957938,
+        "macro_precision": 0.965205,
+        "macro_recall": 0.895993,
+        "macro_f1": 0.924256,
+        "weighted_precision": 0.957485,
+        "weighted_recall": 0.957938,
+        "weighted_f1": 0.956803,
+        "labels": [
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Infiltration",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            28828,
+            0,
+            27,
+            2,
+            50,
+            0
+          ],
+          [
+            0,
+            18799,
+            1,
+            0,
+            20,
+            0
+          ],
+          [
+            83,
+            0,
+            152583,
+            2354,
+            171,
+            0
+          ],
+          [
+            87,
+            0,
+            7699,
+            31408,
+            120,
+            0
+          ],
+          [
+            50,
+            15,
+            370,
+            70,
+            23185,
+            7
+          ],
+          [
+            6,
+            1,
+            3,
+            2,
+            55,
+            109
+          ]
+        ]
+      },
+      "elapsed_sec": 481.8
+    },
+    "unsw-nb15": {
+      "two_stage_cascaded": {
+        "accuracy": 0.806345,
+        "macro_precision": 0.714267,
+        "macro_recall": 0.552947,
+        "macro_f1": 0.547327,
+        "weighted_precision": 0.822841,
+        "weighted_recall": 0.806345,
+        "weighted_f1": 0.793109,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            32271,
+            1,
+            24,
+            788,
+            0,
+            3667,
+            249
+          ],
+          [
+            1,
+            22,
+            0,
+            13,
+            0,
+            8,
+            0
+          ],
+          [
+            137,
+            2,
+            211,
+            3586,
+            1,
+            122,
+            30
+          ],
+          [
+            574,
+            14,
+            50,
+            10289,
+            6,
+            413,
+            164
+          ],
+          [
+            6,
+            0,
+            0,
+            545,
+            28,
+            4,
+            0
+          ],
+          [
+            2262,
+            1,
+            23,
+            1861,
+            3,
+            20762,
+            21
+          ],
+          [
+            69,
+            8,
+            3,
+            1251,
+            2,
+            35,
+            2805
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.788138,
+        "macro_precision": 0.684544,
+        "macro_recall": 0.533575,
+        "macro_f1": 0.539188,
+        "weighted_precision": 0.809224,
+        "weighted_recall": 0.788138,
+        "weighted_f1": 0.776083,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            29770,
+            1,
+            35,
+            759,
+            6,
+            6166,
+            263
+          ],
+          [
+            0,
+            17,
+            0,
+            18,
+            0,
+            9,
+            0
+          ],
+          [
+            127,
+            2,
+            241,
+            3531,
+            3,
+            152,
+            33
+          ],
+          [
+            466,
+            10,
+            72,
+            10293,
+            6,
+            494,
+            169
+          ],
+          [
+            8,
+            0,
+            2,
+            541,
+            27,
+            5,
+            0
+          ],
+          [
+            1306,
+            0,
+            14,
+            1847,
+            11,
+            21733,
+            22
+          ],
+          [
+            122,
+            0,
+            5,
+            1205,
+            6,
+            27,
+            2808
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.80656,
+        "macro_precision": 0.727977,
+        "macro_recall": 0.522431,
+        "macro_f1": 0.519877,
+        "weighted_precision": 0.836805,
+        "weighted_recall": 0.80656,
+        "weighted_f1": 0.780522,
+        "labels": [
+          "Botnet",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            23,
+            0,
+            13,
+            0,
+            8,
+            0
+          ],
+          [
+            2,
+            222,
+            3629,
+            1,
+            190,
+            45
+          ],
+          [
+            14,
+            50,
+            10565,
+            6,
+            663,
+            212
+          ],
+          [
+            0,
+            0,
+            548,
+            28,
+            7,
+            0
+          ],
+          [
+            1,
+            28,
+            1955,
+            3,
+            22919,
+            27
+          ],
+          [
+            8,
+            3,
+            1298,
+            2,
+            56,
+            2806
+          ]
+        ]
+      },
+      "elapsed_sec": 19.5
+    },
+    "uwf_zeekdata": {
+      "two_stage_cascaded": {
+        "accuracy": 0.996268,
+        "macro_precision": 0.93826,
+        "macro_recall": 0.872546,
+        "macro_f1": 0.890172,
+        "weighted_precision": 0.996196,
+        "weighted_recall": 0.996268,
+        "weighted_f1": 0.995908,
+        "labels": [
+          "BENIGN",
+          "Credential/Access Attack",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            955759,
+            0,
+            0,
+            44,
+            2306
+          ],
+          [
+            0,
+            871186,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            4612,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            2485,
+            4121
+          ],
+          [
+            1,
+            0,
+            0,
+            609,
+            57485
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.996296,
+        "macro_precision": 0.955901,
+        "macro_recall": 0.864898,
+        "macro_f1": 0.884811,
+        "weighted_precision": 0.9964,
+        "weighted_recall": 0.996296,
+        "weighted_f1": 0.995831,
+        "labels": [
+          "BENIGN",
+          "Credential/Access Attack",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            955759,
+            0,
+            0,
+            24,
+            2326
+          ],
+          [
+            0,
+            871186,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            4612,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2193,
+            4414
+          ],
+          [
+            1,
+            0,
+            0,
+            263,
+            57831
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.994967,
+        "macro_precision": 0.934073,
+        "macro_recall": 0.841337,
+        "macro_f1": 0.868179,
+        "weighted_precision": 0.994482,
+        "weighted_recall": 0.994967,
+        "weighted_f1": 0.99413,
+        "labels": [
+          "Credential/Access Attack",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            871186,
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            4612,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2486,
+            4121
+          ],
+          [
+            0,
+            0,
+            609,
+            57486
+          ]
+        ]
+      },
+      "elapsed_sec": 231.0
+    }
   }
 }

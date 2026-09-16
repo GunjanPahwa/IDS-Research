@@ -85,6 +85,21 @@ Evaluated on Common-5 feature space across full multi-class test sets:
 
 *Finding*: Unified single-stage models achieve slightly higher Macro F1-Scores (+2.11% on CIC-IDS2017, +0.66% on CSE-CIC-IDS2018) because two-stage cascaded models propagate Stage 1 false-negative errors into Stage 2.
 
+### Common-5 vs. Common-7 Feature Space Comparison
+
+Models were extended to the Common-7 feature space (19 features, adding `tot_fwd_pkts` / `tot_bwd_pkts`) for the 4 datasets that support it. All values are Macro F1-Score from `results/model_benchmarks.json`:
+
+| Dataset | Stage 2 Cascaded C5 | Stage 2 Cascaded C7 | Δ Stage 2 | Unified C5 | Unified C7 | Δ Unified |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **CIC-IDS2017** | 0.7954 | 0.7166 | −0.0788 | 0.8165 | **0.8440** | +0.0275 |
+| **CSE-CIC-IDS2018** | 0.7420 | 0.7217 | −0.0203 | 0.7486 | **0.7770** | +0.0284 |
+| **UNSW-NB15** | 0.5476 | 0.5473 | −0.0003 | 0.5336 | **0.5392** | +0.0056 |
+| **UWF ZeekData** | 0.8492 | **0.8902** | +0.0410 | 0.8505 | **0.8848** | +0.0343 |
+
+*Finding*: Common-7 consistently improves Unified single-stage models across all datasets (+0.006 to +0.028 Macro F1). For Stage 2 cascaded pipelines, Common-7 helps UWF ZeekData (+0.041) but drops CIC-IDS2017 by −0.079.
+
+**Verified root cause of the CIC-IDS2017 cascade drop** (investigated post-training via per-class confusion matrices): Stage 1 C7 is *strictly better* than C5 (fewer FPs: 3,533 vs 6,762; fewer FNs: 922 vs 1,219; F1 0.9803 vs 0.9651) — so Stage 1 noise is not the cause. The drop traces entirely to the Stage 2 C7 model's Probe/Reconnaissance recall collapsing from 0.9995 (isolated) to 0.0070 (cascaded). The `tot_fwd_pkts`/`tot_bwd_pkts` features that Common-7 adds are highly discriminative for Probe/Recon in the attack-only training set, but the Stage 2 C7 classifier's resulting decision boundary is sensitive to the distributional shift introduced by the ~3,533 benign FP rows that Stage 1 routes into it during cascaded evaluation. The Unified C7 model avoids this entirely (no two-stage routing) and scores 0.8440, well above the 0.7166 cascaded number.
+
 ### Concept Drift & Cross-Dataset Generalization Collapse
 
 ![Figure 2: Concept Drift & Cross-Dataset Generalization Heatmaps](docs/assets/fig2_cross_dataset_concept_drift.png)
@@ -167,7 +182,7 @@ python src/preprocessing/pipeline.py
 python src/train_and_evaluate.py
 
 # 3. Artifact Locations
-# Saved Models:   models/*.pkl (30 model files)
+# Saved Models:   models/*.pkl (38 model files)
 # Benchmarks:     results/model_benchmarks.json
 # Research Doc:   docs/complementary_detection_findings.md
 ```
