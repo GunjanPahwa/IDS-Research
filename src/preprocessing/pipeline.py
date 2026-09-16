@@ -98,7 +98,14 @@ class NIDSPreprocessor:
 
     def _standardize_columns(self, df: pd.DataFrame) -> pd.DataFrame:
         df_mapped = df.copy()
-        df_mapped.columns = [str(c).strip() for c in df_mapped.columns]
+        # Strip BOM (\ufeff), non-breaking spaces (\u00a0), zero-width chars,
+        # and ordinary leading/trailing whitespace from every column name.
+        # This prevents invisible encoding artifacts from surviving leakage
+        # detection (e.g. '\ufeffid' bypassing the 'id' drop rule).
+        _STRIP_CHARS = "\ufeff\u00a0\u200b\u200c\u200d\u2060\ufffe"
+        df_mapped.columns = [
+            str(c).strip(_STRIP_CHARS).strip() for c in df_mapped.columns
+        ]
         mapping = resolve_column_mapping(self.dataset_name)
         return df_mapped.rename(columns=mapping)
 

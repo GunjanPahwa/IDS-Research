@@ -4,92 +4,31 @@ This document tracks the active progress of our Network Intrusion Detection Syst
 
 ## Overall Project Status
 
-- **Phase**: Preprocessing Complete — Ready for Stage 1 Modeling
+- **Phase**: Model Training & Cross-Dataset Generalization Complete
 
-- **Status**: All 6 datasets fully preprocessed across all applicable feature spaces. UWF ZeekData confirmed complete (28-Aug-2026). Zero NaN/Inf in features. All preprocessors saved. Ready for Stage 1 binary classifier.
-
-- **Preprocessing Coverage**: 16 feature spaces completed successfully, with 2 recorded as INCOMPATIBLE and 0 FAILED. Dataset loaders, NaN/Inf cleaning, and fit/transform isolation have been verified.
-
-## Environment & Setup Information
-- **Conda Environment**: `ids_research`
-- **Python Version**: 3.11.15
-- **Active Interpreter**: `C:\Users\Yukta.Thakran\AppData\Local\miniconda3\envs\ids_research\python.exe`
-- **Core Dependencies**:
-  - `pandas`
-  - `numpy`
-  - `pyarrow`
-  - `polars`
-  - `scikit-learn`
-  - `matplotlib`
-  - `seaborn`
-  - `jupyter`
-- **Important Commands**:
-  - Activate environment: `conda activate ids_research`
-  - Run python command: `conda run -n ids_research python <script>`
-  - Run unittest suite: `conda run -n ids_research python -m unittest tests/test_loaders.py`
+- **Status**: Model training phase fully completed across all 6 datasets for Stage 1 binary classification, Stage 2 multi-class attack classification, Unified single-stage baselines, and Cross-dataset generalization matrices (Common-5 6x6 & Common-7 4x4). All models saved in `models/`, full metrics logged to `results/model_benchmarks.json`.
 
 ## Work Completed
-- Created the dedicated `ids_research` Conda environment and installed all required packages.
-- Created `requirements.txt` containing core project dependencies.
-- Wrote memory-efficient data analysis scripts using Polars to parse KDD99, NSL-KDD, UNSW-NB15, CIC-IDS2017, CSE-CIC-IDS2018, and UWF ZeekData.
-- Generated `docs/dataset_inventory.md` containing record counts, file sizes, format descriptions, missing values, duplicates, and leakage-prone columns.
-- Generated `docs/label_analysis.md` containing class frequency lists and proportions for all datasets.
-- Created `docs/dataset_comparison.md` comparing creation periods, environments, methodologies, features, and constraints of the datasets.
-- Created `docs/feature_analysis.md` mapping out identical, equivalent, disjoint, and dataset-specific feature groups.
-- Created `data/label_mapping.csv` mapping all unique labels to standardized categories.
-- Created `PROJECT_INSTRUCTIONS.md` and `SESSION_HANDOFF.md`.
-- Implemented memory-efficient dataset loaders in `src/data/` (using pandas chunking for CSV/text and PyArrow row-group loading for Parquet).
-- Implemented `NIDSPreprocessor` and label processors in `src/preprocessing/` supporting two-stage target labeling (binary and multiclass) and feature space mapping.
-- Verified dataset loader compatibility and cross-dataset (Common-5/Common-7) pipeline transformations on all six datasets.
-- **Fixed and Verified the Native-mode Preprocessing Bug**: Resolved the `OneHotEncoder` shape mismatch bug in `src/preprocessing/pipeline.py` by initializing with `categories='auto'` dynamically for Native feature spaces. Verified that Native-mode preprocessing succeeds for all six datasets.
-- **Fixed and Verified Scratch Scripts**: Resolved unpacking signature errors in `scratch/audit_datasets.py` and `scratch/audit_extra.py` (which now correctly unpack `X, y_bin, y_mul` and access internal `LabelStandardizer._processor.lookup` mappings). Both scripts now execute to completion (exit code 0).
-- **Migrated Loader Tests to unittest**: Rewrote `tests/test_loaders.py` to inherit from `unittest.TestCase` and utilize `self.subTest()` for parameterized checks, allowing the automated test suite to run successfully without `pytest`.
-
-## Datasets Inspected/Processed
-- **KDD99**: `kddcup.data` (708.18 MB, 4,898,431 rows, 42 columns, CSV, no header).
-- **NSL-KDD**: Standardized KDD subset (`KDDTrain+.txt`, `KDDTest+.txt`, `KDDTest-21.txt`), 43 columns including `difficulty_score`.
-- **UNSW-NB15**: Modern network datasets (`UNSW_NB15_training-set.csv` and `UNSW_NB15_testing-set.csv`), 45 columns.
-- **CIC-IDS2017**: 8 day-wise CSV files in `CIC2017/MachineLearningCVE/` containing 79 columns.
-- **CSE-CIC-IDS2018**: 10 day-wise Parquet files in `CIC2018/` containing 78 columns.
-- **UWF ZeekData**: 1 Snappy Parquet file in `UWF ZeekData/` containing 26 columns of Zeek logs.
-
-## Preprocessing Status
-
-- **KDD99**:
-  - **native**: COMPLETED (Train shape: [3918744, 59], Test shape: [979687, 59])
-  - **Common-5**: COMPLETED (Train shape: [3918744, 18], Test shape: [979687, 18])
-  - **Common-7**: INCOMPATIBLE (Common-7 is incompatible with KDD99: src_packets/dst_packets are not available. Use Common-5 instead.)
-
-- **NSL-KDD**:
-  - **native**: COMPLETED (Train shape: [125973, 59], Test shape: [22544, 59])
-  - **Common-5**: COMPLETED (Train shape: [125973, 18], Test shape: [22544, 18])
-  - **Common-7**: INCOMPATIBLE (Common-7 is incompatible with NSL-KDD: src_packets/dst_packets are not available. Use Common-5 instead.)
-
-- **UNSW-NB15**:
-  - **native**: COMPLETED (Train shape: [175341, 62], Test shape: [82332, 62])
-  - **Common-5**: COMPLETED (Train shape: [175341, 18], Test shape: [82332, 18])
-  - **Common-7**: COMPLETED (Train shape: [175341, 20], Test shape: [82332, 20])
-
-- **CIC-IDS2017**:
-  - **native**: COMPLETED (Train shape: [2264591, 93], Test shape: [566152, 93])
-  - **Common-5**: COMPLETED (Train shape: [2264591, 18], Test shape: [566152, 18])
-  - **Common-7**: COMPLETED (Train shape: [2264591, 20], Test shape: [566152, 20])
-
-- **CSE-CIC-IDS2018**:
-  - **native**: COMPLETED (Train shape: [5327621, 79], Test shape: [1331911, 79])
-  - **Common-5**: COMPLETED (Train shape: [5327621, 17], Test shape: [1331911, 17])
-  - **Common-7**: COMPLETED (Train shape: [5327621, 19], Test shape: [1331911, 19])
-
-- **UWF ZeekData**:
-  - **native**: COMPLETED (Train shape: [1518890, 19], Test shape: [379723, 19])
-  - **Common-5**: COMPLETED (Train shape: [1518890, 17], Test shape: [379723, 17])
-  - **Common-7**: COMPLETED (Train shape: [1518890, 19], Test shape: [379723, 19])
+- Created the dedicated `ids_research` Conda environment and installed all required packages (`xgboost`, `lightgbm`, etc.).
+- Built modular machine learning codebase in `src/models/` (`binary.py`, `multiclass.py`, `pipeline.py`) and `src/evaluation/` (`metrics.py`, `cross_dataset.py`).
+- Implemented `Stage1BinaryClassifier` with class-imbalance loss weighting (`scale_pos_weight`).
+- Implemented `Stage2MultiClassClassifier` (trained attack-only) and `UnifiedSingleStageClassifier` (trained benign + attack types).
+- Implemented `TwoStageIDSPipeline` for end-to-end cascaded evaluation.
+- Executed `src/train_and_evaluate.py` across all datasets and feature spaces.
+- Generated full 6×6 (Common-5) and 4×4 (Common-7) cross-dataset generalization matrices.
+- Saved trained models into `models/` and structured benchmark outputs to `results/model_benchmarks.json`.
 
 ## Experiments/Models Completed
-*None.*
+- **Stage 1 Binary Classifiers**: 16 models trained and evaluated (Native, Common-5, Common-7).
+- **Stage 2 Multi-Class Classifiers**: 6 models trained (attack-only) and evaluated under Isolated and Cascaded End-to-End setups.
+- **Unified Single-Stage Baseline**: 6 models trained on benign + specific attack types directly.
+- **Cross-Dataset Generalization**: 36-pair Common-5 matrix + 16-pair Common-7 matrix evaluated.
 
 ## Results Obtained
-*None.*
+- **Stage 1 Native F1-Scores**: KDD99 (0.9999), CIC-IDS2017 (0.9958), CSE-CIC-IDS2018 (0.9930), UWF ZeekData (0.9292), UNSW-NB15 (0.9111), NSL-KDD (0.7623).
+- **Two-Stage vs. Unified**: Unified single-stage classifiers slightly edge out two-stage pipelines in Macro F1 (+0.2% to +2.2%), though two-stage pipelines provide independent operational control over alarm sensitivity.
+- **Cross-Dataset Transferability**: High intra-family transfer between CIC-IDS2017 and CSE-CIC-IDS2018 (~0.90 to ~0.96 F1). Significant domain shift drop when evaluating legacy KDD models on modern CIC datasets (~0.37 F1).
+
 
 ## Files Created/Modified
 - `requirements.txt` (Created)

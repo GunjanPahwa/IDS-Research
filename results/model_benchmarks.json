@@ -1,0 +1,2928 @@
+{
+  "meta": {
+    "date": "2026-09-15 21:01:28",
+    "total_execution_time_sec": 14014.6,
+    "datasets": [
+      "cic-ids2017",
+      "cse-cic-ids2018",
+      "kdd99",
+      "nsl-kdd",
+      "unsw-nb15",
+      "uwf_zeekdata"
+    ],
+    "model": "XGBClassifier",
+    "feature_spaces": [
+      "native",
+      "Common-5",
+      "Common-7"
+    ],
+    "unsw_nb15_native_correction": "Retrained on 2026-09-15 after dropping BOM-id column ('\u00ef\u00bb\u00bfid'). Old model had accuracy=0.575961 due to row-ID feature leak."
+  },
+  "stage1_binary": {
+    "cic-ids2017_native": {
+      "accuracy": 0.998857,
+      "precision": 0.994682,
+      "recall": 0.999543,
+      "f1": 0.997106,
+      "confusion_matrix": [
+        [
+          454027,
+          596
+        ],
+        [
+          51,
+          111478
+        ]
+      ],
+      "roc_auc": 0.999966
+    },
+    "cic-ids2017_common5": {
+      "accuracy": 0.985903,
+      "precision": 0.942241,
+      "recall": 0.98907,
+      "f1": 0.965088,
+      "confusion_matrix": [
+        [
+          447861,
+          6762
+        ],
+        [
+          1219,
+          110310
+        ]
+      ],
+      "roc_auc": 0.999028
+    },
+    "cic-ids2017_common7": {
+      "accuracy": 0.992131,
+      "precision": 0.969047,
+      "recall": 0.991733,
+      "f1": 0.980259,
+      "confusion_matrix": [
+        [
+          451090,
+          3533
+        ],
+        [
+          922,
+          110607
+        ]
+      ],
+      "roc_auc": 0.999468
+    },
+    "cse-cic-ids2018_native": {
+      "accuracy": 0.979594,
+      "precision": 0.974421,
+      "recall": 0.922068,
+      "f1": 0.947522,
+      "confusion_matrix": [
+        [
+          1059365,
+          6441
+        ],
+        [
+          20738,
+          245367
+        ]
+      ],
+      "roc_auc": 0.990085
+    },
+    "cse-cic-ids2018_common5": {
+      "accuracy": 0.959834,
+      "precision": 0.893363,
+      "recall": 0.907258,
+      "f1": 0.900257,
+      "confusion_matrix": [
+        [
+          1036988,
+          28818
+        ],
+        [
+          24679,
+          241426
+        ]
+      ],
+      "roc_auc": 0.978509
+    },
+    "cse-cic-ids2018_common7": {
+      "accuracy": 0.968482,
+      "precision": 0.92718,
+      "recall": 0.914034,
+      "f1": 0.92056,
+      "confusion_matrix": [
+        [
+          1046703,
+          19103
+        ],
+        [
+          22876,
+          243229
+        ]
+      ],
+      "roc_auc": 0.981448
+    },
+    "kdd99_native": {
+      "accuracy": 0.999948,
+      "precision": 0.999987,
+      "recall": 0.999948,
+      "f1": 0.999968,
+      "confusion_matrix": [
+        [
+          194546,
+          10
+        ],
+        [
+          41,
+          785090
+        ]
+      ],
+      "roc_auc": 1.0
+    },
+    "kdd99_common5": {
+      "accuracy": 0.999196,
+      "precision": 0.999725,
+      "recall": 0.999271,
+      "f1": 0.999498,
+      "confusion_matrix": [
+        [
+          194340,
+          216
+        ],
+        [
+          572,
+          784559
+        ]
+      ],
+      "roc_auc": 0.999873
+    },
+    "nsl-kdd_native": {
+      "accuracy": 0.790188,
+      "precision": 0.966494,
+      "recall": 0.654095,
+      "f1": 0.780184,
+      "confusion_matrix": [
+        [
+          9420,
+          291
+        ],
+        [
+          4439,
+          8394
+        ]
+      ],
+      "roc_auc": 0.969848
+    },
+    "nsl-kdd_common5": {
+      "accuracy": 0.832683,
+      "precision": 0.961778,
+      "recall": 0.735292,
+      "f1": 0.833422,
+      "confusion_matrix": [
+        [
+          9336,
+          375
+        ],
+        [
+          3397,
+          9436
+        ]
+      ],
+      "roc_auc": 0.968783
+    },
+    "unsw-nb15_native": {
+      "accuracy": 0.909889,
+      "precision": 0.881964,
+      "recall": 0.965565,
+      "f1": 0.921873,
+      "roc_auc": 0.98518,
+      "confusion_matrix": [
+        [
+          31142,
+          5858
+        ],
+        [
+          1561,
+          43771
+        ]
+      ],
+      "training_time_sec": 2.2
+    },
+    "unsw-nb15_common5": {
+      "accuracy": 0.904071,
+      "precision": 0.896984,
+      "recall": 0.932917,
+      "f1": 0.914598,
+      "confusion_matrix": [
+        [
+          32143,
+          4857
+        ],
+        [
+          3041,
+          42291
+        ]
+      ],
+      "roc_auc": 0.978089
+    },
+    "unsw-nb15_common7": {
+      "accuracy": 0.905529,
+      "precision": 0.899409,
+      "recall": 0.932741,
+      "f1": 0.915771,
+      "confusion_matrix": [
+        [
+          32271,
+          4729
+        ],
+        [
+          3049,
+          42283
+        ]
+      ],
+      "roc_auc": 0.978923
+    },
+    "uwf_zeekdata_native": {
+      "accuracy": 0.99877,
+      "precision": 0.997523,
+      "recall": 1.0,
+      "f1": 0.99876,
+      "confusion_matrix": [
+        [
+          191155,
+          467
+        ],
+        [
+          0,
+          188101
+        ]
+      ],
+      "roc_auc": 0.999966
+    },
+    "uwf_zeekdata_common5": {
+      "accuracy": 0.996081,
+      "precision": 0.996779,
+      "recall": 0.995306,
+      "f1": 0.996042,
+      "confusion_matrix": [
+        [
+          191017,
+          605
+        ],
+        [
+          883,
+          187218
+        ]
+      ],
+      "roc_auc": 0.999888
+    },
+    "uwf_zeekdata_common7": {
+      "accuracy": 0.99876,
+      "precision": 0.997508,
+      "recall": 0.999995,
+      "f1": 0.99875,
+      "confusion_matrix": [
+        [
+          191152,
+          470
+        ],
+        [
+          1,
+          188100
+        ]
+      ],
+      "roc_auc": 0.99996
+    }
+  },
+  "stage2_multiclass_and_unified": {
+    "cic-ids2017": {
+      "two_stage_cascaded": {
+        "accuracy": 0.985765,
+        "macro_precision": 0.879785,
+        "macro_recall": 0.78678,
+        "macro_f1": 0.795402,
+        "weighted_precision": 0.9866,
+        "weighted_recall": 0.985765,
+        "weighted_f1": 0.985718,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            447861,
+            197,
+            59,
+            425,
+            5794,
+            0,
+            1,
+            9,
+            277
+          ],
+          [
+            149,
+            244,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            12,
+            0,
+            2749,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            35,
+            0,
+            0,
+            25553,
+            17,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            600,
+            0,
+            0,
+            17,
+            49916,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            395,
+            0,
+            0,
+            0,
+            11,
+            0,
+            0,
+            30,
+            0
+          ],
+          [
+            24,
+            0,
+            0,
+            0,
+            27,
+            0,
+            0,
+            0,
+            31735
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.988761,
+        "macro_precision": 0.978679,
+        "macro_recall": 0.773686,
+        "macro_f1": 0.816549,
+        "weighted_precision": 0.988746,
+        "weighted_recall": 0.988761,
+        "weighted_f1": 0.988393,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            451429,
+            1,
+            55,
+            104,
+            2791,
+            0,
+            0,
+            4,
+            239
+          ],
+          [
+            249,
+            144,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            13,
+            0,
+            2748,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            94,
+            0,
+            0,
+            25501,
+            10,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2289,
+            0,
+            0,
+            17,
+            48221,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            395,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            40,
+            0
+          ],
+          [
+            81,
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            31700
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.998825,
+        "macro_precision": 0.995349,
+        "macro_recall": 0.969532,
+        "macro_f1": 0.981615,
+        "weighted_precision": 0.998818,
+        "weighted_recall": 0.998825,
+        "weighted_f1": 0.998817,
+        "labels": [
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            393,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2761,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            25586,
+            19,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            18,
+            50504,
+            0,
+            0,
+            11,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            42,
+            0,
+            0,
+            394,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32,
+            0,
+            0,
+            2,
+            31752
+          ]
+        ]
+      },
+      "elapsed_sec": 325.7
+    },
+    "cse-cic-ids2018": {
+      "two_stage_cascaded": {
+        "accuracy": 0.950898,
+        "macro_precision": 0.816668,
+        "macro_recall": 0.729417,
+        "macro_f1": 0.742001,
+        "weighted_precision": 0.94353,
+        "weighted_recall": 0.950898,
+        "weighted_f1": 0.943779,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Infiltration",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            1036988,
+            4,
+            0,
+            21726,
+            6165,
+            903,
+            20
+          ],
+          [
+            275,
+            28615,
+            0,
+            16,
+            0,
+            1,
+            0
+          ],
+          [
+            52,
+            0,
+            18765,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            1531,
+            0,
+            0,
+            151949,
+            1711,
+            0,
+            0
+          ],
+          [
+            1025,
+            0,
+            0,
+            8669,
+            29617,
+            3,
+            0
+          ],
+          [
+            21691,
+            1,
+            0,
+            1349,
+            146,
+            509,
+            1
+          ],
+          [
+            105,
+            0,
+            0,
+            2,
+            0,
+            0,
+            69
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.958616,
+        "macro_precision": 0.875032,
+        "macro_recall": 0.730474,
+        "macro_f1": 0.748597,
+        "weighted_precision": 0.952208,
+        "weighted_recall": 0.958616,
+        "weighted_f1": 0.950316,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Infiltration",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            1054248,
+            2,
+            0,
+            5324,
+            6132,
+            93,
+            7
+          ],
+          [
+            287,
+            28616,
+            0,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            52,
+            0,
+            18767,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            7120,
+            0,
+            0,
+            143023,
+            5048,
+            0,
+            0
+          ],
+          [
+            4468,
+            0,
+            0,
+            2902,
+            31944,
+            0,
+            0
+          ],
+          [
+            22578,
+            0,
+            0,
+            855,
+            141,
+            123,
+            0
+          ],
+          [
+            106,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.949133,
+        "macro_precision": 0.964111,
+        "macro_recall": 0.878683,
+        "macro_f1": 0.913784,
+        "weighted_precision": 0.949329,
+        "weighted_recall": 0.949133,
+        "weighted_f1": 0.947507,
+        "labels": [
+          "Botnet",
+          "Brute Force",
+          "DDoS",
+          "DoS",
+          "Infiltration",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            28815,
+            0,
+            45,
+            0,
+            47,
+            0
+          ],
+          [
+            0,
+            18767,
+            3,
+            0,
+            50,
+            0
+          ],
+          [
+            89,
+            0,
+            153126,
+            1819,
+            157,
+            0
+          ],
+          [
+            78,
+            0,
+            8910,
+            30196,
+            130,
+            0
+          ],
+          [
+            144,
+            0,
+            1639,
+            351,
+            21557,
+            6
+          ],
+          [
+            5,
+            0,
+            6,
+            0,
+            57,
+            108
+          ]
+        ]
+      },
+      "elapsed_sec": 8296.5
+    },
+    "kdd99": {
+      "two_stage_cascaded": {
+        "accuracy": 0.994204,
+        "macro_precision": 0.643346,
+        "macro_recall": 0.56822,
+        "macro_f1": 0.592606,
+        "weighted_precision": 0.994057,
+        "weighted_recall": 0.994204,
+        "weighted_f1": 0.993149,
+        "labels": [
+          "BENIGN",
+          "Brute Force",
+          "Credential/Access Attack",
+          "DoS",
+          "Exploitation",
+          "Other",
+          "Privilege Escalation",
+          "Probe/Reconnaissance",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            194340,
+            0,
+            0,
+            103,
+            0,
+            0,
+            0,
+            113,
+            0
+          ],
+          [
+            1,
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            528,
+            0,
+            0,
+            776146,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            6,
+            0,
+            0,
+            0,
+            0,
+            202,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            29,
+            0,
+            0,
+            4885,
+            0,
+            0,
+            0,
+            3306,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.994202,
+        "macro_precision": 0.734464,
+        "macro_recall": 0.679342,
+        "macro_f1": 0.691033,
+        "weighted_precision": 0.994198,
+        "weighted_recall": 0.994202,
+        "weighted_f1": 0.99314,
+        "labels": [
+          "BENIGN",
+          "Brute Force",
+          "Credential/Access Attack",
+          "DoS",
+          "Exploitation",
+          "Other",
+          "Privilege Escalation",
+          "Probe/Reconnaissance",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            194335,
+            0,
+            1,
+            202,
+            1,
+            0,
+            0,
+            17,
+            0
+          ],
+          [
+            1,
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            528,
+            0,
+            0,
+            776147,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0,
+            0,
+            0,
+            202,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            23,
+            0,
+            0,
+            4890,
+            0,
+            0,
+            0,
+            3307,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.993756,
+        "macro_precision": 0.853197,
+        "macro_recall": 0.742825,
+        "macro_f1": 0.76851,
+        "weighted_precision": 0.993787,
+        "weighted_recall": 0.993756,
+        "weighted_f1": 0.992447,
+        "labels": [
+          "Brute Force",
+          "Credential/Access Attack",
+          "DoS",
+          "Exploitation",
+          "Other",
+          "Privilege Escalation",
+          "Probe/Reconnaissance",
+          "Web Attack"
+        ],
+        "confusion_matrix": [
+          [
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            776673,
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            207,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            3,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            4889,
+            0,
+            0,
+            2,
+            3329,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "elapsed_sec": 3979.3
+    },
+    "nsl-kdd": {
+      "two_stage_cascaded": {
+        "accuracy": 0.755722,
+        "macro_precision": 0.510558,
+        "macro_recall": 0.343447,
+        "macro_f1": 0.376702,
+        "weighted_precision": 0.759574,
+        "weighted_recall": 0.755722,
+        "weighted_f1": 0.723898,
+        "labels": [
+          "BENIGN",
+          "Brute Force",
+          "Credential/Access Attack",
+          "DoS",
+          "Exploitation",
+          "Other",
+          "Privilege Escalation",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            9336,
+            1,
+            0,
+            133,
+            0,
+            1,
+            0,
+            240
+          ],
+          [
+            1191,
+            371,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            182,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1080,
+            0,
+            0,
+            6134,
+            0,
+            0,
+            0,
+            237
+          ],
+          [
+            25,
+            0,
+            0,
+            4,
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            524,
+            1,
+            0,
+            117,
+            0,
+            512,
+            0,
+            2
+          ],
+          [
+            21,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0,
+            0
+          ],
+          [
+            374,
+            0,
+            0,
+            1363,
+            0,
+            0,
+            0,
+            684
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.74206,
+        "macro_precision": 0.50556,
+        "macro_recall": 0.319065,
+        "macro_f1": 0.349354,
+        "weighted_precision": 0.750204,
+        "weighted_recall": 0.74206,
+        "weighted_f1": 0.706075,
+        "labels": [
+          "BENIGN",
+          "Brute Force",
+          "Credential/Access Attack",
+          "DoS",
+          "Exploitation",
+          "Other",
+          "Privilege Escalation",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            9339,
+            1,
+            0,
+            133,
+            0,
+            2,
+            0,
+            236
+          ],
+          [
+            1201,
+            361,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            182,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1173,
+            0,
+            0,
+            6040,
+            0,
+            1,
+            0,
+            237
+          ],
+          [
+            24,
+            0,
+            0,
+            4,
+            0,
+            5,
+            0,
+            0
+          ],
+          [
+            726,
+            1,
+            0,
+            117,
+            0,
+            311,
+            0,
+            1
+          ],
+          [
+            22,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            378,
+            0,
+            0,
+            1365,
+            0,
+            0,
+            0,
+            678
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.67755,
+        "macro_precision": 0.43095,
+        "macro_recall": 0.319181,
+        "macro_f1": 0.338174,
+        "weighted_precision": 0.718466,
+        "weighted_recall": 0.67755,
+        "weighted_f1": 0.665486,
+        "labels": [
+          "Brute Force",
+          "Credential/Access Attack",
+          "DoS",
+          "Exploitation",
+          "Other",
+          "Privilege Escalation",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            373,
+            0,
+            285,
+            0,
+            16,
+            0,
+            888
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            178
+          ],
+          [
+            0,
+            0,
+            6468,
+            0,
+            1,
+            0,
+            982
+          ],
+          [
+            2,
+            0,
+            9,
+            0,
+            14,
+            0,
+            8
+          ],
+          [
+            1,
+            0,
+            127,
+            0,
+            800,
+            0,
+            228
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            26,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1366,
+            0,
+            1,
+            0,
+            1054
+          ]
+        ]
+      },
+      "elapsed_sec": 54.2
+    },
+    "unsw-nb15": {
+      "two_stage_cascaded": {
+        "accuracy": 0.803272,
+        "macro_precision": 0.709465,
+        "macro_recall": 0.550145,
+        "macro_f1": 0.54757,
+        "weighted_precision": 0.81907,
+        "weighted_recall": 0.803272,
+        "weighted_f1": 0.790174,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            32143,
+            1,
+            29,
+            852,
+            1,
+            3835,
+            139
+          ],
+          [
+            0,
+            22,
+            0,
+            14,
+            0,
+            8,
+            0
+          ],
+          [
+            130,
+            2,
+            197,
+            3592,
+            1,
+            136,
+            31
+          ],
+          [
+            608,
+            14,
+            56,
+            10188,
+            6,
+            476,
+            162
+          ],
+          [
+            7,
+            0,
+            0,
+            545,
+            26,
+            5,
+            0
+          ],
+          [
+            2234,
+            0,
+            18,
+            1903,
+            4,
+            20755,
+            19
+          ],
+          [
+            62,
+            6,
+            4,
+            1241,
+            2,
+            54,
+            2804
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.783766,
+        "macro_precision": 0.651295,
+        "macro_recall": 0.527464,
+        "macro_f1": 0.533572,
+        "weighted_precision": 0.801978,
+        "weighted_recall": 0.783766,
+        "weighted_f1": 0.771996,
+        "labels": [
+          "BENIGN",
+          "Botnet",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            29614,
+            1,
+            38,
+            765,
+            3,
+            6355,
+            224
+          ],
+          [
+            0,
+            16,
+            0,
+            19,
+            0,
+            9,
+            0
+          ],
+          [
+            126,
+            2,
+            227,
+            3534,
+            20,
+            150,
+            30
+          ],
+          [
+            543,
+            10,
+            89,
+            10188,
+            20,
+            498,
+            162
+          ],
+          [
+            8,
+            0,
+            0,
+            543,
+            28,
+            4,
+            0
+          ],
+          [
+            1319,
+            0,
+            23,
+            1910,
+            9,
+            21656,
+            16
+          ],
+          [
+            127,
+            0,
+            7,
+            1196,
+            13,
+            30,
+            2800
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.803781,
+        "macro_precision": 0.721444,
+        "macro_recall": 0.516119,
+        "macro_f1": 0.516363,
+        "weighted_precision": 0.83125,
+        "weighted_recall": 0.803781,
+        "weighted_f1": 0.777199,
+        "labels": [
+          "Botnet",
+          "DoS",
+          "Exploitation",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            22,
+            0,
+            14,
+            0,
+            8,
+            0
+          ],
+          [
+            2,
+            199,
+            3638,
+            1,
+            196,
+            53
+          ],
+          [
+            14,
+            57,
+            10489,
+            6,
+            724,
+            220
+          ],
+          [
+            0,
+            0,
+            548,
+            27,
+            8,
+            0
+          ],
+          [
+            0,
+            21,
+            1987,
+            4,
+            22895,
+            26
+          ],
+          [
+            6,
+            4,
+            1278,
+            2,
+            78,
+            2805
+          ]
+        ]
+      },
+      "elapsed_sec": 99.1
+    },
+    "uwf_zeekdata": {
+      "two_stage_cascaded": {
+        "accuracy": 0.992566,
+        "macro_precision": 0.962192,
+        "macro_recall": 0.828591,
+        "macro_f1": 0.849248,
+        "weighted_precision": 0.992898,
+        "weighted_recall": 0.992566,
+        "weighted_f1": 0.99188,
+        "labels": [
+          "BENIGN",
+          "Credential/Access Attack",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            191017,
+            0,
+            0,
+            0,
+            605
+          ],
+          [
+            0,
+            173939,
+            0,
+            1,
+            297
+          ],
+          [
+            0,
+            2,
+            950,
+            0,
+            1
+          ],
+          [
+            6,
+            1,
+            0,
+            303,
+            1020
+          ],
+          [
+            877,
+            4,
+            0,
+            9,
+            10691
+          ]
+        ]
+      },
+      "unified_single_stage": {
+        "accuracy": 0.992953,
+        "macro_precision": 0.965269,
+        "macro_recall": 0.828356,
+        "macro_f1": 0.850526,
+        "weighted_precision": 0.993175,
+        "weighted_recall": 0.992953,
+        "weighted_f1": 0.992226,
+        "labels": [
+          "BENIGN",
+          "Credential/Access Attack",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            191017,
+            0,
+            0,
+            0,
+            605
+          ],
+          [
+            0,
+            174123,
+            0,
+            0,
+            114
+          ],
+          [
+            0,
+            2,
+            951,
+            0,
+            0
+          ],
+          [
+            7,
+            6,
+            0,
+            303,
+            1014
+          ],
+          [
+            877,
+            42,
+            0,
+            9,
+            10653
+          ]
+        ]
+      },
+      "stage2_isolated_attack_only": {
+        "accuracy": 0.992876,
+        "macro_precision": 0.966371,
+        "macro_recall": 0.805648,
+        "macro_f1": 0.828196,
+        "weighted_precision": 0.993419,
+        "weighted_recall": 0.992876,
+        "weighted_f1": 0.991364,
+        "labels": [
+          "Credential/Access Attack",
+          "Infiltration",
+          "Other",
+          "Probe/Reconnaissance"
+        ],
+        "confusion_matrix": [
+          [
+            173939,
+            0,
+            1,
+            297
+          ],
+          [
+            2,
+            950,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            304,
+            1025
+          ],
+          [
+            4,
+            0,
+            9,
+            11568
+          ]
+        ]
+      },
+      "elapsed_sec": 996.5
+    }
+  },
+  "cross_dataset_generalization": {
+    "common5_matrix": {
+      "datasets": [
+        "cic-ids2017",
+        "cse-cic-ids2018",
+        "kdd99",
+        "nsl-kdd",
+        "unsw-nb15",
+        "uwf_zeekdata"
+      ],
+      "accuracy_matrix": [
+        [
+          0.985903,
+          0.797836,
+          0.160502,
+          0.450275,
+          0.446266,
+          0.505861
+        ],
+        [
+          0.634545,
+          0.959834,
+          0.198314,
+          0.424503,
+          0.446534,
+          0.504781
+        ],
+        [
+          0.797494,
+          0.788993,
+          0.999196,
+          0.468373,
+          0.456068,
+          0.411337
+        ],
+        [
+          0.664809,
+          0.680033,
+          0.853071,
+          0.832683,
+          0.705558,
+          0.145435
+        ],
+        [
+          0.691397,
+          0.526042,
+          0.284454,
+          0.522889,
+          0.904071,
+          0.697703
+        ],
+        [
+          0.544202,
+          0.404205,
+          0.267132,
+          0.572525,
+          0.296349,
+          0.996081
+        ]
+      ],
+      "f1_matrix": [
+        [
+          0.965088,
+          0.000275,
+          0.008222,
+          0.069525,
+          0.019823,
+          0.004932
+        ],
+        [
+          0.364113,
+          0.900257,
+          5.9e-05,
+          0.014433,
+          0.051615,
+          0.000765
+        ],
+        [
+          7e-05,
+          0.002024,
+          0.999498,
+          0.138328,
+          0.042382,
+          0.015009
+        ],
+        [
+          0.26431,
+          0.02865,
+          0.904159,
+          0.833422,
+          0.704863,
+          0.064508
+        ],
+        [
+          0.32409,
+          0.064034,
+          0.385628,
+          0.311924,
+          0.914598,
+          0.595399
+        ],
+        [
+          0.459678,
+          0.392304,
+          0.380052,
+          0.696118,
+          0.344849,
+          0.996042
+        ]
+      ],
+      "pair_details": {
+        "cic-ids2017": {
+          "cic-ids2017": {
+            "accuracy": 0.985903,
+            "precision": 0.942241,
+            "recall": 0.98907,
+            "f1": 0.965088,
+            "confusion_matrix": [
+              [
+                447861,
+                6762
+              ],
+              [
+                1219,
+                110310
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.797836,
+            "precision": 0.011444,
+            "recall": 0.000139,
+            "f1": 0.000275,
+            "confusion_matrix": [
+              [
+                1062610,
+                3196
+              ],
+              [
+                266068,
+                37
+              ]
+            ]
+          },
+          "kdd99": {
+            "accuracy": 0.160502,
+            "precision": 0.077246,
+            "recall": 0.004342,
+            "f1": 0.008222,
+            "confusion_matrix": [
+              [
+                153833,
+                40723
+              ],
+              [
+                781722,
+                3409
+              ]
+            ]
+          },
+          "nsl-kdd": {
+            "accuracy": 0.450275,
+            "precision": 0.952675,
+            "recall": 0.036079,
+            "f1": 0.069525,
+            "confusion_matrix": [
+              [
+                9688,
+                23
+              ],
+              [
+                12370,
+                463
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.446266,
+            "precision": 0.390678,
+            "recall": 0.010169,
+            "f1": 0.019823,
+            "confusion_matrix": [
+              [
+                36281,
+                719
+              ],
+              [
+                44871,
+                461
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.505861,
+            "precision": 1.0,
+            "recall": 0.002472,
+            "f1": 0.004932,
+            "confusion_matrix": [
+              [
+                191622,
+                0
+              ],
+              [
+                187636,
+                465
+              ]
+            ]
+          }
+        },
+        "cse-cic-ids2018": {
+          "cic-ids2017": {
+            "accuracy": 0.634545,
+            "precision": 0.277005,
+            "recall": 0.531135,
+            "f1": 0.364113,
+            "confusion_matrix": [
+              [
+                300012,
+                154611
+              ],
+              [
+                52292,
+                59237
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.959834,
+            "precision": 0.893363,
+            "recall": 0.907258,
+            "f1": 0.900257,
+            "confusion_matrix": [
+              [
+                1036988,
+                28818
+              ],
+              [
+                24679,
+                241426
+              ]
+            ]
+          },
+          "kdd99": {
+            "accuracy": 0.198314,
+            "precision": 0.072785,
+            "recall": 2.9e-05,
+            "f1": 5.9e-05,
+            "confusion_matrix": [
+              [
+                194263,
+                293
+              ],
+              [
+                785108,
+                23
+              ]
+            ]
+          },
+          "nsl-kdd": {
+            "accuracy": 0.424503,
+            "precision": 0.287009,
+            "recall": 0.007403,
+            "f1": 0.014433,
+            "confusion_matrix": [
+              [
+                9475,
+                236
+              ],
+              [
+                12738,
+                95
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.446534,
+            "precision": 0.456554,
+            "recall": 0.027354,
+            "f1": 0.051615,
+            "confusion_matrix": [
+              [
+                35524,
+                1476
+              ],
+              [
+                44092,
+                1240
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.504781,
+            "precision": 0.808989,
+            "recall": 0.000383,
+            "f1": 0.000765,
+            "confusion_matrix": [
+              [
+                191605,
+                17
+              ],
+              [
+                188029,
+                72
+              ]
+            ]
+          }
+        },
+        "kdd99": {
+          "cic-ids2017": {
+            "accuracy": 0.797494,
+            "precision": 0.001279,
+            "recall": 3.6e-05,
+            "f1": 7e-05,
+            "confusion_matrix": [
+              [
+                451499,
+                3124
+              ],
+              [
+                111525,
+                4
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.788993,
+            "precision": 0.018378,
+            "recall": 0.001071,
+            "f1": 0.002024,
+            "confusion_matrix": [
+              [
+                1050583,
+                15223
+              ],
+              [
+                265820,
+                285
+              ]
+            ]
+          },
+          "kdd99": {
+            "accuracy": 0.999196,
+            "precision": 0.999725,
+            "recall": 0.999271,
+            "f1": 0.999498,
+            "confusion_matrix": [
+              [
+                194340,
+                216
+              ],
+              [
+                572,
+                784559
+              ]
+            ]
+          },
+          "nsl-kdd": {
+            "accuracy": 0.468373,
+            "precision": 0.894052,
+            "recall": 0.074963,
+            "f1": 0.138328,
+            "confusion_matrix": [
+              [
+                9597,
+                114
+              ],
+              [
+                11871,
+                962
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.456068,
+            "precision": 0.691556,
+            "recall": 0.021861,
+            "f1": 0.042382,
+            "confusion_matrix": [
+              [
+                36558,
+                442
+              ],
+              [
+                44341,
+                991
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.411337,
+            "precision": 0.043853,
+            "recall": 0.009054,
+            "f1": 0.015009,
+            "confusion_matrix": [
+              [
+                154491,
+                37131
+              ],
+              [
+                186398,
+                1703
+              ]
+            ]
+          }
+        },
+        "nsl-kdd": {
+          "cic-ids2017": {
+            "accuracy": 0.664809,
+            "precision": 0.23282,
+            "recall": 0.305651,
+            "f1": 0.26431,
+            "confusion_matrix": [
+              [
+                342294,
+                112329
+              ],
+              [
+                77440,
+                34089
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.680033,
+            "precision": 0.036407,
+            "recall": 0.023618,
+            "f1": 0.02865,
+            "confusion_matrix": [
+              [
+                899458,
+                166348
+              ],
+              [
+                259820,
+                6285
+              ]
+            ]
+          },
+          "kdd99": {
+            "accuracy": 0.853071,
+            "precision": 0.947277,
+            "recall": 0.864795,
+            "f1": 0.904159,
+            "confusion_matrix": [
+              [
+                156766,
+                37790
+              ],
+              [
+                106154,
+                678977
+              ]
+            ]
+          },
+          "nsl-kdd": {
+            "accuracy": 0.832683,
+            "precision": 0.961778,
+            "recall": 0.735292,
+            "f1": 0.833422,
+            "confusion_matrix": [
+              [
+                9336,
+                375
+              ],
+              [
+                3397,
+                9436
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.705558,
+            "precision": 0.786502,
+            "recall": 0.638578,
+            "f1": 0.704863,
+            "confusion_matrix": [
+              [
+                29142,
+                7858
+              ],
+              [
+                16384,
+                28948
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.145435,
+            "precision": 0.070465,
+            "recall": 0.059479,
+            "f1": 0.064508,
+            "confusion_matrix": [
+              [
+                44037,
+                147585
+              ],
+              [
+                176913,
+                11188
+              ]
+            ]
+          }
+        },
+        "unsw-nb15": {
+          "cic-ids2017": {
+            "accuracy": 0.691397,
+            "precision": 0.285021,
+            "recall": 0.37557,
+            "f1": 0.32409,
+            "confusion_matrix": [
+              [
+                349549,
+                105074
+              ],
+              [
+                69642,
+                41887
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.526042,
+            "precision": 0.052881,
+            "recall": 0.081148,
+            "f1": 0.064034,
+            "confusion_matrix": [
+              [
+                679047,
+                386759
+              ],
+              [
+                244511,
+                21594
+              ]
+            ]
+          },
+          "kdd99": {
+            "accuracy": 0.284454,
+            "precision": 0.618183,
+            "recall": 0.280214,
+            "f1": 0.385628,
+            "confusion_matrix": [
+              [
+                58671,
+                135885
+              ],
+              [
+                565126,
+                220005
+              ]
+            ]
+          },
+          "nsl-kdd": {
+            "accuracy": 0.522889,
+            "precision": 0.871025,
+            "recall": 0.189979,
+            "f1": 0.311924,
+            "confusion_matrix": [
+              [
+                9350,
+                361
+              ],
+              [
+                10395,
+                2438
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.904071,
+            "precision": 0.896984,
+            "recall": 0.932917,
+            "f1": 0.914598,
+            "confusion_matrix": [
+              [
+                32143,
+                4857
+              ],
+              [
+                3041,
+                42291
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.697703,
+            "precision": 0.883399,
+            "recall": 0.449014,
+            "f1": 0.595399,
+            "confusion_matrix": [
+              [
+                180474,
+                11148
+              ],
+              [
+                103641,
+                84460
+              ]
+            ]
+          }
+        },
+        "uwf_zeekdata": {
+          "cic-ids2017": {
+            "accuracy": 0.544202,
+            "precision": 0.299865,
+            "recall": 0.98421,
+            "f1": 0.459678,
+            "confusion_matrix": [
+              [
+                198333,
+                256290
+              ],
+              [
+                1761,
+                109768
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.404205,
+            "precision": 0.246355,
+            "recall": 0.962556,
+            "f1": 0.392304,
+            "confusion_matrix": [
+              [
+                282224,
+                783582
+              ],
+              [
+                9964,
+                256141
+              ]
+            ]
+          },
+          "kdd99": {
+            "accuracy": 0.267132,
+            "precision": 0.590013,
+            "recall": 0.280304,
+            "f1": 0.380052,
+            "confusion_matrix": [
+              [
+                41631,
+                152925
+              ],
+              [
+                565056,
+                220075
+              ]
+            ]
+          },
+          "nsl-kdd": {
+            "accuracy": 0.572525,
+            "precision": 0.58464,
+            "recall": 0.860126,
+            "f1": 0.696118,
+            "confusion_matrix": [
+              [
+                1869,
+                7842
+              ],
+              [
+                1795,
+                11038
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.296349,
+            "precision": 0.3538,
+            "recall": 0.336341,
+            "f1": 0.344849,
+            "confusion_matrix": [
+              [
+                9152,
+                27848
+              ],
+              [
+                30085,
+                15247
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.996081,
+            "precision": 0.996779,
+            "recall": 0.995306,
+            "f1": 0.996042,
+            "confusion_matrix": [
+              [
+                191017,
+                605
+              ],
+              [
+                883,
+                187218
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "common7_matrix": {
+      "datasets": [
+        "cic-ids2017",
+        "cse-cic-ids2018",
+        "unsw-nb15",
+        "uwf_zeekdata"
+      ],
+      "accuracy_matrix": [
+        [
+          0.992131,
+          0.795658,
+          0.448295,
+          0.504636
+        ],
+        [
+          0.674488,
+          0.968482,
+          0.450335,
+          0.504678
+        ],
+        [
+          0.690327,
+          0.515025,
+          0.905529,
+          0.630662
+        ],
+        [
+          0.564272,
+          0.447983,
+          0.296361,
+          0.99876
+        ]
+      ],
+      "f1_matrix": [
+        [
+          0.980259,
+          0.00011,
+          0.025529,
+          0.0
+        ],
+        [
+          0.354108,
+          0.92056,
+          0.052033,
+          0.000234
+        ],
+        [
+          0.323656,
+          0.05423,
+          0.915771,
+          0.55279
+        ],
+        [
+          0.472307,
+          0.320079,
+          0.344824,
+          0.99875
+        ]
+      ],
+      "pair_details": {
+        "cic-ids2017": {
+          "cic-ids2017": {
+            "accuracy": 0.992131,
+            "precision": 0.969047,
+            "recall": 0.991733,
+            "f1": 0.980259,
+            "confusion_matrix": [
+              [
+                451090,
+                3533
+              ],
+              [
+                922,
+                110607
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.795658,
+            "precision": 0.002463,
+            "recall": 5.6e-05,
+            "f1": 0.00011,
+            "confusion_matrix": [
+              [
+                1059731,
+                6075
+              ],
+              [
+                266090,
+                15
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.448295,
+            "precision": 0.464481,
+            "recall": 0.013125,
+            "f1": 0.025529,
+            "confusion_matrix": [
+              [
+                36314,
+                686
+              ],
+              [
+                44737,
+                595
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.504636,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "confusion_matrix": [
+              [
+                191622,
+                0
+              ],
+              [
+                188101,
+                0
+              ]
+            ]
+          }
+        },
+        "cse-cic-ids2018": {
+          "cic-ids2017": {
+            "accuracy": 0.674488,
+            "precision": 0.290674,
+            "recall": 0.452958,
+            "f1": 0.354108,
+            "confusion_matrix": [
+              [
+                331345,
+                123278
+              ],
+              [
+                61011,
+                50518
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.968482,
+            "precision": 0.92718,
+            "recall": 0.914034,
+            "f1": 0.92056,
+            "confusion_matrix": [
+              [
+                1046703,
+                19103
+              ],
+              [
+                22876,
+                243229
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.450335,
+            "precision": 0.515995,
+            "recall": 0.027398,
+            "f1": 0.052033,
+            "confusion_matrix": [
+              [
+                35835,
+                1165
+              ],
+              [
+                44090,
+                1242
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.504678,
+            "precision": 0.785714,
+            "recall": 0.000117,
+            "f1": 0.000234,
+            "confusion_matrix": [
+              [
+                191616,
+                6
+              ],
+              [
+                188079,
+                22
+              ]
+            ]
+          }
+        },
+        "unsw-nb15": {
+          "cic-ids2017": {
+            "accuracy": 0.690327,
+            "precision": 0.284032,
+            "recall": 0.376126,
+            "f1": 0.323656,
+            "confusion_matrix": [
+              [
+                348881,
+                105742
+              ],
+              [
+                69580,
+                41949
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.515025,
+            "precision": 0.044423,
+            "recall": 0.069593,
+            "f1": 0.05423,
+            "confusion_matrix": [
+              [
+                667449,
+                398357
+              ],
+              [
+                247586,
+                18519
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.905529,
+            "precision": 0.899409,
+            "recall": 0.932741,
+            "f1": 0.915771,
+            "confusion_matrix": [
+              [
+                32271,
+                4729
+              ],
+              [
+                3049,
+                42283
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.630662,
+            "precision": 0.690656,
+            "recall": 0.460806,
+            "f1": 0.55279,
+            "confusion_matrix": [
+              [
+                152799,
+                38823
+              ],
+              [
+                101423,
+                86678
+              ]
+            ]
+          }
+        },
+        "uwf_zeekdata": {
+          "cic-ids2017": {
+            "accuracy": 0.564272,
+            "precision": 0.310146,
+            "recall": 0.989859,
+            "f1": 0.472307,
+            "confusion_matrix": [
+              [
+                209066,
+                245557
+              ],
+              [
+                1131,
+                110398
+              ]
+            ]
+          },
+          "cse-cic-ids2018": {
+            "accuracy": 0.447983,
+            "precision": 0.212278,
+            "recall": 0.650345,
+            "f1": 0.320079,
+            "confusion_matrix": [
+              [
+                423613,
+                642193
+              ],
+              [
+                93045,
+                173060
+              ]
+            ]
+          },
+          "unsw-nb15": {
+            "accuracy": 0.296361,
+            "precision": 0.353794,
+            "recall": 0.336297,
+            "f1": 0.344824,
+            "confusion_matrix": [
+              [
+                9155,
+                27845
+              ],
+              [
+                30087,
+                15245
+              ]
+            ]
+          },
+          "uwf_zeekdata": {
+            "accuracy": 0.99876,
+            "precision": 0.997508,
+            "recall": 0.999995,
+            "f1": 0.99875,
+            "confusion_matrix": [
+              [
+                191152,
+                470
+              ],
+              [
+                1,
+                188100
+              ]
+            ]
+          }
+        }
+      }
+    }
+  }
+}

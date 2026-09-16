@@ -5,25 +5,14 @@ To study dataset evolution and cross-dataset generalization in Machine Learning-
 
 ## 2. Current Status
 
-All preprocessing is 100% complete across all 6 datasets and all applicable feature spaces. Ready for Stage 1 binary classifier.
+Model training, evaluation, and cross-dataset generalization experiments are 100% complete across all 6 datasets.
 
-- Preprocessing works successfully for all 6 datasets. Generated 16 processed splits, with KDD99/NSL-KDD Common-7 marked as INCOMPATIBLE.
+- **Stage 1 Binary Classifiers**: Completed for all 16 dataset-feature space combinations.
+- **Stage 2 Multi-Class Classifiers**: Completed (trained on attack-only; evaluated under isolated ground-truth and cascaded end-to-end setups).
+- **Unified Single-Stage Baseline**: Completed across all 6 datasets.
+- **Cross-Dataset Generalization**: Completed (6x6 Common-5 matrix and 4x4 Common-7 matrix).
+- **Artifacts Saved**: All models saved to `models/`, full benchmark metrics saved to `results/model_benchmarks.json`.
 
-- UWF ZeekData preprocessing completed 28-Aug-2026: native/Common-5/Common-7 all PASS (1,518,890 train / 379,723 test rows each). NaN=0, Inf=0.
-
-- All 6 datasets have full-scale processed CSVs in `data/processed/` and fitted preprocessors in `data/preprocessors/`.
-
-- The OneHotEncoder shape mismatch bug has been fixed and successfully verified across all 6 datasets.
-
-- Scratch scripts (`scratch/audit_datasets.py` and `scratch/audit_extra.py`) have been updated and run successfully to completion (exit code 0).
-
-- Loader unit tests have been migrated to `unittest` and pass successfully on all datasets.
-
-- The preprocessing layer has been fully verified, including dataset loading, preprocessing, NaN/Inf cleaning, and fit/transform isolation.
-
-- Conda environment `ids_research` is set up on the current machine.
-
-- No model training has been started. Raw datasets remain unmodified.
 
 ## 3. Datasets Available
 All datasets are located directly in the workspace root:
