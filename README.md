@@ -76,53 +76,34 @@ The primary evaluation across all 6 datasets is performed on the **Common-5** ca
 
 #### Two-Stage Cascaded vs. Unified Single-Stage Performance (Common-5 Canonical Space)
 
-| Dataset | Model Architecture | Macro Precision | Macro Recall | Macro F1-Score | Weighted F1-Score | Overall Accuracy |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **KDD99** | Two-Stage Cascaded | 0.9412 | 0.9250 | 0.9327 | 0.9991 | 99.91% |
-| **KDD99** | Unified Single-Stage | **0.9450** | **0.9261** | **0.9341** | **0.9992** | **99.92%** |
-| **NSL-KDD** | Two-Stage Cascaded | 0.8350 | 0.8010 | 0.8142 | 0.9780 | 97.80% |
-| **NSL-KDD** | Unified Single-Stage | **0.8420** | **0.8115** | **0.8256** | **0.9801** | **98.01%** |
-| **UNSW-NB15** | Two-Stage Cascaded | **0.5621** | **0.5420** | **0.5476** | 0.9601 | 96.01% |
-| **UNSW-NB15** | Unified Single-Stage | 0.5510 | 0.5280 | 0.5336 | **0.9612** | **96.12%** |
-| **CIC-IDS2017** | Two-Stage Cascaded | 0.8798 | **0.7868** | 0.7954 | 0.9857 | 98.58% |
-| **CIC-IDS2017** | Unified Single-Stage | **0.9787** | 0.7737 | **0.8165** | **0.9884** | **98.88%** |
-| **CSE-CIC-IDS2018** | Two-Stage Cascaded | 0.8167 | 0.7294 | 0.7420 | 0.9438 | 95.09% |
-| **CSE-CIC-IDS2018** | Unified Single-Stage | **0.8750** | **0.7305** | **0.7486** | **0.9503** | **95.86%** |
-| **UWF-ZeekData24** | Two-Stage Cascaded | 0.8521 | 0.8480 | 0.8492 | 0.9810 | 98.10% |
-| **UWF-ZeekData24** | Unified Single-Stage | **0.8540** | **0.8491** | **0.8505** | **0.9822** | **98.22%** |
+> **Metric Definition**: All metrics evaluated on held-out test splits using `scikit-learn` metrics with `labels = sorted(set(y_true) | set(y_pred))` and `zero_division=0`.
 
-![Figure 3: Two-Stage vs Unified & Model Efficiency Frontier](docs/assets/fig3_architecture_model_tradeoffs.png)
+| Dataset | Model Architecture | Macro Precision | Macro Recall | Macro F1-Score | Weighted F1-Score | Overall Accuracy | Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **KDD99** | Two-Stage Cascaded | 0.7734 | 0.5949 | 0.6536 | 0.9931 | 99.41% | ✓ Reproduced |
+| **KDD99** | Unified Single-Stage | **0.9707** | **0.8114** | **0.8606** | **0.9931** | **99.41%** | ✓ Reproduced |
+| **NSL-KDD** | Two-Stage Cascaded | **0.5106** | **0.3434** | **0.3767** | **0.7239** | **75.57%** | ✓ Reproduced |
+| **NSL-KDD** | Unified Single-Stage | 0.5056 | 0.3191 | 0.3494 | 0.7061 | 74.21% | ✓ Reproduced |
+| **UNSW-NB15** | Two-Stage Cascaded | **0.7095** | **0.5501** | **0.5476** | **0.7902** | **80.33%** | ✓ Reproduced |
+| **UNSW-NB15** | Unified Single-Stage | 0.6513 | 0.5275 | 0.5336 | 0.7720 | 78.38% | ✓ Reproduced |
+| **CIC-IDS2017** | Two-Stage Cascaded | — | — | — | — | — | Not reproduced (no raw data) |
+| **CIC-IDS2017** | Unified Single-Stage | — | — | — | — | — | Not reproduced (no raw data) |
+| **CSE-CIC-IDS2018** | Two-Stage Cascaded | — | — | — | — | — | Not reproduced (no raw data) |
+| **CSE-CIC-IDS2018** | Unified Single-Stage | — | — | — | — | — | Not reproduced (no raw data) |
+| **UWF-ZeekData24** | Two-Stage Cascaded | — | — | — | — | — | Not reproduced (no raw data) |
+| **UWF-ZeekData24** | Unified Single-Stage | — | — | — | — | — | Not reproduced (no raw data) |
 
-*Finding*: Unified single-stage models achieve slightly higher Macro F1-Scores (+0.14% to +2.11%) on most datasets because two-stage cascaded models propagate Stage 1 false-negative errors into Stage 2.
+> **Notes on Reproduction**:
+> - **Reproduced Datasets**: Evaluated on full test splits (`UNSW_NB15_testing-set.csv`, `KDDTest+.txt`, `kddcup.data` 80/20 test split with `random_state=42`) using pre-trained offline models in `models/`.
+> - **Unreproduced Datasets**: Raw data files for `CIC-IDS2017`, `CSE-CIC-IDS2018`, and `UWF-ZeekData24` are absent from the local repository; live metrics could not be computed.
 
----
-
-### Feature Space Trade-off: Why We Didn't Default to Common-7
-
-While extending feature spaces with packet counts (`src_packets`, `dst_packets`) appears intuitively advantageous, our comparative analysis established **Common-5 as the canonical primary choice** based on deliberate architectural trade-offs:
-
-| Dataset | Stage 2 Cascaded C5 (Canonical) | Stage 2 Cascaded C7 (Supplementary) | Δ Stage 2 | Unified C5 (Canonical) | Unified C7 (Supplementary) | Δ Unified |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **KDD99** | **0.9327** | — *(N/A)* | — | **0.9341** | — *(N/A)* | — |
-| **NSL-KDD** | **0.8142** | — *(N/A)* | — | **0.8256** | — *(N/A)* | — |
-| **CIC-IDS2017** | **0.7954** | 0.7166 | **−0.0788** | 0.8165 | **0.8440** | +0.0275 |
-| **CSE-CIC-IDS2018** | **0.7420** | 0.7217 | **−0.0203** | 0.7486 | **0.7770** | +0.0284 |
-| **UNSW-NB15** | **0.5476** | 0.5473 | **−0.0003** | 0.5336 | **0.5392** | +0.0056 |
-| **UWF ZeekData** | 0.8492 | **0.8902** | **+0.0410** | 0.8505 | **0.8848** | +0.0343 |
-
-#### Architectural Key Takeaways:
-1. **Dataset Incompatibility**: Common-7 relies on `src_packets` and `dst_packets`, which do not exist in legacy connection-based datasets (`KDD99` and `NSL-KDD`). Common-7 can never serve as a universal pipeline standard across all 6 datasets.
-2. **Cascaded Pipeline Stability**: In head-to-head cascaded evaluation, **Common-5 outperforms or ties Common-7 in 3 out of 4 supported datasets** (`CIC-IDS2017`, `CSE-CIC-IDS2018`, and `UNSW-NB15`).
-3. **Mechanistic Root Cause of CIC-IDS2017 Cascaded Drop**:
-   * Stage 1 Common-7 misses 31,550 of 31,786 `Probe/Reconnaissance` (PortScan) flows (0.0074 recall), accounting for 90.86% of all Stage 1 attack false negatives (34,725 total FNs across all attack categories).
-   * **Physical Cause**: In feature spaces that include packet counts but exclude TCP flags (`SYN`/`ACK`) and header lengths, 0-byte PortScan SYN flows (`duration ≈ 0.0`, `src_bytes = 0`, `src_packets = 1`) become statistically indistinguishable from background benign TCP handshakes. Because benign traffic predominates, Stage 1 Common-7 routes 99.26% of PortScan flows directly to `BENIGN`, preventing Stage 2 from ever receiving them.
-   * In contrast, the **Unified Single-Stage C7 model** evaluates all features directly without two-stage filtering, achieving **0.8440 Macro F1** (+0.0275 over Unified C5).
-
-**Architectural Decision**: Common-5 is established as the canonical primary feature space for the two-stage cascaded architecture due to its universal cross-dataset compatibility and cascaded routing stability. Common-7 is valuable specifically for Stage 1-only binary detection or Unified single-stage models.
+*Finding*: On the 3 reproduced datasets (`KDD99`, `NSL-KDD`, `UNSW-NB15`), Two-Stage Cascaded and Unified Single-Stage architectures achieve comparable performance on the Common-5 feature space. For `KDD99`, Unified achieves higher Macro F1 (`0.8606` vs `0.6536`), whereas for `NSL-KDD` and `UNSW-NB15`, Two-Stage Cascaded achieves slightly higher Macro F1 (`0.3767` vs `0.3494` on NSL-KDD; `0.5476` vs `0.5336` on UNSW-NB15).
 
 ---
 
 ### Concept Drift & Cross-Dataset Generalization Collapse
+
+> **Status: Not Reproduced** — Raw dataset files for cross-dataset 6x6 evaluation matrix are absent from the local workspace. Below values are documented from prior stored benchmarks (`results/cross_dataset_generalization.json`).
 
 ![Figure 2: Concept Drift & Cross-Dataset Generalization Heatmaps](docs/assets/fig2_cross_dataset_concept_drift.png)
 
@@ -137,6 +118,8 @@ Evaluating models trained on legacy synthetic datasets against modern network tr
 ---
 
 ### Complementary Anomaly Detection: Autoencoder vs. XGBoost
+
+> **Status: Hybrid benefit pending union test** — XGBoost and Autoencoder evaluated separately on the UNSW-NB15 native test set ($N=82,332$ flows) using saved artifacts. The OR-union benefit at matched FPR budgets has not yet been measured on a held-out union threshold; individual detector numbers below are reproduced from saved models.
 
 ![Figure 1: Complementary Anomaly Detection (Venn Overlap & Per-Category Recall)](docs/assets/fig1_complementary_detection.png)
 
@@ -175,7 +158,7 @@ Evaluated on UNSW-NB15 Native Test Set ($N=82,332$ flows):
 +-----------------------------------------------------------------------+
 ```
 
-*Standout Empirical Insight*: While supervised XGBoost achieves a higher overall F1-score (`0.9219` vs `0.8036`), the Autoencoder detected **572 attack flows that bypassed XGBoost entirely**. **87.6% of those unique detections (501 flows) were Fuzzers attacks** — XGBoost's weakest category. Conversely, the Autoencoder suffers severe blind spots on stealthy probing attacks (*Reconnaissance* and *Shellcode*) whose feature distributions closely mimic normal traffic.
+*Standout Empirical Insight*: While supervised XGBoost achieves a higher overall F1-score (`0.9219` vs `0.8036`), the Autoencoder detected **572 attack flows that bypassed XGBoost entirely**. **87.6% of those unique detections (501 flows) were Fuzzers attacks** — XGBoost's weakest category. Conversely, the Autoencoder suffers severe blind spots on stealthy probing attacks (*Reconnaissance* and *Shellcode*) whose feature distributions closely mimic normal traffic. *(Note: The net benefit of OR-union at a shared FPR budget is pending a proper validation-split threshold experiment; figures above are for individual detectors at their default thresholds.)*
 
 ---
 
@@ -222,11 +205,142 @@ python src/train_and_evaluate.py
 * **Data Manipulation**: `pandas` (v2.2.3), `numpy` (v2.1.2)
 * **Serialization & Utilities**: `pickle`, `json`, `pathlib`
 
+
 ---
 
-## 7. Future Work
+## 8. FastAPI NIDS Prediction Backend API
 
-The following items represent planned architectural extensions:
-1. **Hybrid Meta-Ensemble**: Integrating the Autoencoder reconstruction error as a continuous input feature into XGBoost to eliminate *Fuzzers* blind spots without increasing false positives.
-2. **Selective TabNet GPU Acceleration**: Expanding TabNet evaluation across high-volume datasets (CIC-IDS2017, CSE-CIC-IDS2018) under GPU-accelerated environments.
-3. **Automated Hyperparameter Optimization**: Running Optuna Bayesian hyperparameter sweeps for `scale_pos_weight` and tree depth on non-UNSW datasets.
+A high-performance Python + FastAPI prediction service serving **Unified Single-Stage Multi-Class Classifiers** on the canonical **Common-5** feature space across all 6 datasets.
+
+### Features
+- **Zero Training Overhead**: Serves pre-trained XGBoost models and reuses `NIDSPreprocessor` fitted artifacts directly from `src/`.
+- **Pre-loaded Models**: Lifespan event preloads all 6 dataset models once at startup.
+- **Threadpool Async Offloading**: CPU-bound model inference is executed asynchronously on background worker threads to prevent blocking the event loop.
+- **Strict Pydantic v2 Validation**: Rejects negative numbers, NaN/Inf values, missing fields, and extra unallowed fields (`extra="forbid"`).
+- **Vectorized Batch Inference**: Supports batch flow prediction up to `MAX_BATCH_SIZE` in a single vectorized model evaluation call.
+- **Resilient Categorical Encoding**: Strips and lowercases `protocol` and `service`, gracefully ignoring unknown values via `handle_unknown="ignore"`.
+
+### Environment Configuration (.env)
+
+Copy `.env.example` to `.env` to configure application defaults:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `DEFAULT_DATASET` | `unsw_nb15` | Default dataset when not passed in request (`kdd99`, `nsl_kdd`, `unsw_nb15`, `cic_ids2017`, `cse_cic_ids2018`, `uwf_zeekdata24`) |
+| `MAX_BATCH_SIZE` | `1000` | Maximum flow objects allowed per batch request |
+| `ARTIFACTS_DIR` | `.` | Root directory containing `models/` and `data/` |
+| `MODELS_DIR` | `models` | Directory holding serialized `.pkl` models |
+| `PREPROCESSORS_DIR` | `data/preprocessors` | Directory holding serialized preprocessor artifacts |
+| `LOG_LEVEL` | `INFO` | Logging level (`DEBUG`, `INFO`, `WARNING`, `ERROR`) |
+
+> [!IMPORTANT]
+> **Verified Datasets & Known Common-5 Limitation**:
+> - **Verified Datasets**: `unsw_nb15`, `kdd99`, and `nsl_kdd` have fully verified test-set data and offline evaluation pipelines in this repository. Datasets `cic_ids2017`, `cse_cic_ids2018`, and `uwf_zeekdata24` are unverified because raw test CSV files are absent from the local repository.
+> - **Known Common-5 Limitation**: Because the canonical Common-5 feature space relies only on 5 minimal flow features (`duration`, `src_bytes`, `dst_bytes`, `protocol`, `service`), zero-byte probe/scan flows (`duration=0`, `src_bytes=0`, `dst_bytes=0`) lack packet counts or TCP flag metadata, causing them to come back classified as `BENIGN`. Full native feature sets or extended feature spaces (such as Common-7 with packet counts) are required to reliably classify zero-byte network probing attacks.
+
+---
+
+### Quickstart & Running the API Server
+
+```bash
+# Activate environment and install API dependencies
+pip install -r requirements.txt
+
+# Run server with Uvicorn
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Interactive API documentation will be available at:
+- **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+---
+
+### Running Tests
+
+```bash
+pytest tests/test_health.py tests/test_model_info.py tests/test_predict.py tests/test_batch_predict.py -v
+```
+
+---
+
+### Example cURL Requests
+
+#### 1. Single Flow Prediction (`POST /api/v1/predict`)
+```bash
+curl -X POST "http://localhost:8000/api/v1/predict" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "dataset": "cic_ids2017",
+       "features": {
+         "duration": 0.5,
+         "src_bytes": 100,
+         "dst_bytes": 200,
+         "protocol": "tcp",
+         "service": "http"
+       }
+     }'
+```
+
+**Example Response**:
+```json
+{
+  "is_attack": false,
+  "label": "BENIGN",
+  "attack_type": null,
+  "confidence": 1.0,
+  "probabilities": {
+    "BENIGN": 1.0,
+    "Botnet": 0.0,
+    "Brute Force": 0.0,
+    "DDoS": 0.0,
+    "DoS": 0.0,
+    "Exploitation": 0.0,
+    "Infiltration": 0.0,
+    "Other": 0.0,
+    "Probe/Reconnaissance": 0.0
+  },
+  "dataset": "cic_ids2017",
+  "latency_ms": 1.45
+}
+```
+
+#### 2. Vectorized Batch Prediction (`POST /api/v1/predict/batch`)
+```bash
+curl -X POST "http://localhost:8000/api/v1/predict/batch" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "dataset": "unsw_nb15",
+       "flows": [
+         {
+           "duration": 0.0,
+           "src_bytes": 0,
+           "dst_bytes": 0,
+           "protocol": "tcp",
+           "service": "http"
+         },
+         {
+           "duration": 10.5,
+           "src_bytes": 50000,
+           "dst_bytes": 100000,
+           "protocol": "udp",
+           "service": "dns"
+         }
+       ]
+     }'
+```
+
+#### 3. Health Status (`GET /api/v1/health`)
+```bash
+curl -X GET "http://localhost:8000/api/v1/health"
+```
+
+#### 4. Model Metadata & Schema (`GET /api/v1/model/info`)
+```bash
+curl -X GET "http://localhost:8000/api/v1/model/info"
+```
+
